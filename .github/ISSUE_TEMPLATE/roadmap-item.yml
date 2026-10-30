@@ -1,13 +1,13 @@
 name: Roadmap item
-description: Track work on a phase or deliverable listed in roadmap.md.
+description: Track work on a phase or deliverable listed in docs/ROADMAP.md.
 title: '[roadmap] short description'
 labels: ['roadmap']
 body:
   - type: markdown
     attributes:
       value: |
-        Every roadmap issue maps to a phase/deliverable in `roadmap.md`.
-        If none fits, propose the new item in `roadmap.md` first.
+        Every roadmap issue maps to a phase/deliverable in `docs/ROADMAP.md`.
+        If none fits, propose the new item in `docs/ROADMAP.md` first.
   - type: dropdown
     id: phase
     attributes:

@@ -6,5 +6,5 @@ contact_links:
     url: https://github.com/chiaraberti13/WEBFANG/security/advisories/new
     about: Never open a public issue for an unpatched vulnerability. See SECURITY.md.
   - name: Roadmap
-    url: https://github.com/chiaraberti13/WEBFANG/blob/main/roadmap.md
+    url: https://github.com/chiaraberti13/WEBFANG/blob/main/docs/ROADMAP.md
     about: Check the phase and area before opening an issue.
