@@ -1,0 +1,14 @@
+# Output di build e dipendenze
+node_modules/
+dist/
+dist-singlefile/
+dev-dist/
+coverage/
+
+# File deterministici / generati
+pnpm-lock.yaml
+
+# Prosa mantenuta a mano (specifica, roadmap, ADR, docs). Prettier governa codice
+# e JSON; l'impaginazione e le tabelle di questi documenti sono curate a mano,
+# quindi Prettier non deve combatterne gli autori.
+*.md

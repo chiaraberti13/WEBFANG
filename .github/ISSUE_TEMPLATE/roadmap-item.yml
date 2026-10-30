@@ -1,0 +1,70 @@
+name: Roadmap item
+description: Track work on a phase or deliverable listed in roadmap.md.
+title: '[roadmap] short description'
+labels: ['roadmap']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Every roadmap issue maps to a phase/deliverable in `roadmap.md`.
+        If none fits, propose the new item in `roadmap.md` first.
+  - type: dropdown
+    id: phase
+    attributes:
+      label: Phase
+      options:
+        - 'Phase 0 — Feasibility + scaffolding'
+        - 'Phase 1 — Vertical slice'
+        - 'Phase 2 — Restricted MVP'
+        - 'Phase 3 — User validation'
+        - 'Phase 4 — Expansion to v1.0'
+        - 'Growth phase'
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area (hat)
+      options:
+        - 'security — Product & AppSec (payloads, remediation, threat model)'
+        - 'dev — Frontend & DX (engine, UI, A11y, workers, build)'
+        - 'ux — Design & usability'
+        - 'growth — CI/CD, deploy, SEO, docs, community'
+    validations:
+      required: true
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options:
+        - 'P0 — blocks safe use or a reliable release'
+        - 'P1 — high value, high priority'
+        - 'P2 — important improvement'
+        - 'P3 — later evolution'
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope of this issue
+      description: Which deliverable(s) of the phase this issue covers.
+    validations:
+      required: true
+  - type: textarea
+    id: done
+    attributes:
+      label: Completion criterion and evidence
+      description: How completion will be proven (test, CI run, committed evidence, exit gate).
+    validations:
+      required: true
+  - type: textarea
+    id: blockers
+    attributes:
+      label: Prerequisites or blockers
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety
+      options:
+        - label: This issue contains no secrets, real target data or personal data.
+          required: true

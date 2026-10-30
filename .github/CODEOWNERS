@@ -1,0 +1,34 @@
+# Code ownership for review routing (CONTRIBUTING.md, governance).
+#
+# GitHub requests a review from the owner of every changed path. The security-
+# and privacy-critical surfaces are listed explicitly so a change to the data
+# contract, the workers, the URL serialization, the CSP or the supply-chain
+# tooling always reaches a reviewer. Later lines win, so the specific rules
+# below override the catch-all.
+
+# Default owner for everything not matched more specifically.
+*                               @chiaraberti13
+
+# --- Security/privacy-critical core: text/byte contract, structured errors,
+#     execution limits and cancellation. ---
+/src/core/                      @chiaraberti13
+
+# --- Heavy compute in workers (anti-ReDoS, timeouts, size limits). ---
+/src/workers/                   @chiaraberti13
+
+# --- Recipe serialization and migrations: URL safety, no secrets serialized. ---
+/src/recipes/                   @chiaraberti13
+
+# --- Content Security Policy and app entry points. ---
+/index.html                     @chiaraberti13
+/vercel.json                    @chiaraberti13
+/vite.config.ts                 @chiaraberti13
+
+# --- Supply chain: dependency manifest, lockfile and install hardening. ---
+/package.json                   @chiaraberti13
+/pnpm-lock.yaml                 @chiaraberti13
+/.npmrc                         @chiaraberti13
+
+# --- Release, CI and security policy. ---
+/.github/                       @chiaraberti13
+/SECURITY.md                    @chiaraberti13

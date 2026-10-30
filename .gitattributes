@@ -1,0 +1,9 @@
+# Normalizza tutti i file di testo a LF nel repository: la build single-file e i
+# test del contratto testo/byte assumono line ending deterministici, e i checkout
+# restano coerenti tra i vari OS.
+* text=auto eol=lf
+
+# Le fixture di test devono conservare i byte originali esatti: i vettori golden
+# del contratto testo/byte includono deliberatamente CRLF, BOM e contenuto binario,
+# quindi Git non deve mai normalizzarli.
+src/**/fixtures/** -text

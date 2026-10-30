@@ -1,0 +1,10 @@
+# Issue chooser. Blank issues are disabled so every issue maps to a roadmap
+# phase/item or a reproducible bug (CONTRIBUTING.md).
+blank_issues_enabled: false
+contact_links:
+  - name: Report a security vulnerability (private)
+    url: https://github.com/chiaraberti13/WEBFANG/security/advisories/new
+    about: Never open a public issue for an unpatched vulnerability. See SECURITY.md.
+  - name: Roadmap
+    url: https://github.com/chiaraberti13/WEBFANG/blob/main/roadmap.md
+    about: Check the phase and area before opening an issue.

@@ -1,0 +1,27 @@
+@import 'tailwindcss';
+
+/* Token di base del tema "forgia" (ambra/bronzo su fondo scuro). In Fase 2
+   diventeranno un design system completo. */
+:root {
+  color-scheme: dark light;
+  --wf-bg: #1a1512;
+  --wf-amber: #f7b955;
+  --wf-bronze: #c97b2b;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--wf-bg);
+  font-family:
+    'Segoe UI',
+    system-ui,
+    -apple-system,
+    Arial,
+    sans-serif;
+}

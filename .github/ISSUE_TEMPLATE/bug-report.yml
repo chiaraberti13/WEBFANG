@@ -1,0 +1,61 @@
+name: Bug report
+description: Behaviour differs from what the code or documentation promises. Not for security vulnerabilities.
+title: 'bug: short description'
+labels: ['bug']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Security vulnerabilities must be reported privately** — see SECURITY.md.
+        Never paste credentials, API keys, personal data or real target information.
+  - type: input
+    id: area
+    attributes:
+      label: Area / operation
+      placeholder: 'e.g. Base64 decode, recipe share, JWT inspector'
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: WebFang version or commit
+      placeholder: '0.x.y or commit SHA'
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      placeholder: 'Browser + version, OS; normal build / single-file / PWA'
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Use synthetic or lab inputs only. A shareable recipe URL helps.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected vs actual behaviour
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Console output / sanitized details
+      render: text
+  - type: input
+    id: roadmap-ref
+    attributes:
+      label: Related roadmap phase/item (if any)
+      placeholder: 'Phase 2 — Flow 2'
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety
+      options:
+        - label: I removed secrets, personal data and real target details.
+          required: true

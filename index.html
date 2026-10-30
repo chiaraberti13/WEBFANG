@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--
+      La CSP viene iniettata a build-time dal plugin `webfang-csp` (vite.config.ts):
+      stringente per la build normale (script 'self'), con hash sha256 degli script
+      inline per la variante single-file. frame-ancestors è servito via header HTTP
+      (vercel.json), perché in <meta> viene ignorato. In dev non c'è CSP (locale).
+    -->
+    <meta name="color-scheme" content="dark light" />
+    <title>WebFang — Offensive Web Toolkit</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
