@@ -9,8 +9,7 @@ every transformation to its context of use and its defensive countermeasure.
 
 ### Before you start
 
-1. Read `README.md`, `SECURITY.md`, [`roadmap.md`](roadmap.md),
-   [`project.md`](project.md) and the relevant ADRs.
+1. Read `README.md`, `SECURITY.md` and [`docs/ROADMAP.md`](docs/ROADMAP.md).
 2. Search existing issues and use a dedicated branch (`feat/…`, `fix/…`).
 3. Keep each pull request focused and avoid unrelated refactors.
 4. Never commit secrets, private data or real target information. Payloads must
@@ -60,8 +59,7 @@ lega ogni trasformazione al suo contesto d'uso e alla sua contromisura difensiva
 
 ### Prima di iniziare
 
-1. Leggi `README.md`, `SECURITY.md`, [`roadmap.md`](roadmap.md),
-   [`project.md`](project.md) e gli ADR pertinenti.
+1. Leggi `README.md`, `SECURITY.md` e [`docs/ROADMAP.md`](docs/ROADMAP.md).
 2. Controlla le issue esistenti e usa un branch dedicato (`feat/…`, `fix/…`).
 3. Mantieni ogni pull request focalizzata, senza refactor non correlati.
 4. Non committare segreti, dati privati o informazioni su target reali. I payload

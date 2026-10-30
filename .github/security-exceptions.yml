@@ -1,0 +1,4 @@
+# Every scanner suppression or deny-by-default exception must have a matching,
+# reviewable entry here (e.g. a documented network request in the inventory).
+version: 1
+exceptions: []

@@ -22,13 +22,13 @@
 > **context of use** and its **defensive countermeasure** — usable by experts
 > and beginners alike.
 
-<p align="center"><a href="docs/README.md"><strong>Documentation</strong></a> · <a href="roadmap.md">Roadmap</a> · <a href="project.md">Specification</a> · <a href="CONTRIBUTING.md">Contributing</a> · <a href="SECURITY.md">Security</a> · <a href="https://github.com/chiaraberti13/WEBFANG/issues">Issues</a></p>
+<p align="center"><a href="docs/ROADMAP.md"><strong>Roadmap</strong></a> · <a href="SECURITY.md">Security</a> · <a href="CONTRIBUTING.md">Contributing</a> · <a href="descrizione.md">Project description</a> · <a href="LICENSE">Licence</a> · <a href="https://github.com/chiaraberti13/WEBFANG/issues">Issues</a></p>
 
 > [!IMPORTANT]
 > **Early development — scaffold stage.** The repository has the data contract,
 > quality tooling and project foundations. The recipe engine, the transformation
 > catalogue, the defense panels and the guided mode are being built incrementally
-> (see [`roadmap.md`](roadmap.md), Phase 0 → MVP).
+> (see [`docs/ROADMAP.md`](docs/ROADMAP.md), Phase 0 → MVP).
 
 ## Quick navigation
 
@@ -65,18 +65,17 @@ correct fix into their stack. A beginner uses the guided mode and the
 - Pinned tooling and dependency-install restrictions in [`.npmrc`](.npmrc).
 - A Vite + React 19 application shell, with a normal (PWA) and a single-file
   build variant (one HTML file, runnable from `file://`).
-- A product specification, development roadmap and engineering decisions (ADRs).
-- This bilingual presentation and public documentation.
+- A development roadmap ([`docs/ROADMAP.md`](docs/ROADMAP.md)) and a bilingual
+  project description ([`descrizione.md`](descrizione.md)).
+- This bilingual presentation (README EN/IT).
 
 No release is available yet. Do not infer runtime security from scaffold checks.
-See [development status](docs/presentation/development-status.md).
 
 ## Development setup
 
 Install Git, an accepted Node.js line (**22.x or 24.x**) and **pnpm 10.28.0**
 (via `corepack`). The recommended exact Node version is in [`.nvmrc`](.nvmrc);
-the accepted range is in [`package.json`](package.json) and
-[ADR 0001](docs/adr/0001-stack.md).
+the accepted range is in [`package.json`](package.json).
 
 ```bash
 git clone https://github.com/chiaraberti13/WEBFANG.git
@@ -108,19 +107,15 @@ with DOMPurify only where a live preview is genuinely required. A generated
 payload is didactic and inert — **it is not proof of a vulnerability**.
 
 Use only on systems, files and accounts you own or are explicitly authorized to
-test. Read [security scope and reporting](SECURITY.md) and the
-[privacy promise](project.md#part-b--security-and-privacy).
+test. Read [security scope and reporting](SECURITY.md).
 
 ## Documentation and roadmap
 
-[Overview](docs/presentation/overview.md) ·
-[Development status](docs/presentation/development-status.md) ·
-[All documentation](docs/README.md)
+The project document and phased plan live in [`docs/ROADMAP.md`](docs/ROADMAP.md);
+a bilingual, CV-oriented description is in [`descrizione.md`](descrizione.md).
 
 Public documentation is available in English and Italian. The runtime UI is
-bilingual IT/EN by design; engineering specifications, ADRs and
-[`roadmap.md`](roadmap.md) remain in English. See
-[ADR 0004](docs/adr/0004-bilingual-public-documentation.md).
+bilingual IT/EN by design; the roadmap document is authored in Italian.
 
 Contributions use dedicated branches and pull requests. Consult
 [CONTRIBUTING.md](CONTRIBUTING.md) before changing code or documentation.

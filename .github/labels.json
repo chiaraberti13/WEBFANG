@@ -42,7 +42,7 @@
   {
     "name": "roadmap",
     "color": "5319E7",
-    "description": "Tracks a phase or deliverable in roadmap.md"
+    "description": "Tracks a phase or deliverable in docs/ROADMAP.md"
   },
   {
     "name": "bug",

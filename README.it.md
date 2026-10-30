@@ -22,13 +22,13 @@
 > lega **ogni trasformazione al suo contesto d'uso e alla sua contromisura
 > difensiva** — usabile sia dagli esperti sia dai principianti.
 
-<p align="center"><a href="docs/README.it.md"><strong>Documentazione</strong></a> · <a href="roadmap.md">Roadmap</a> · <a href="project.md">Specifica</a> · <a href="CONTRIBUTING.it.md">Contribuire</a> · <a href="SECURITY.it.md">Sicurezza</a> · <a href="https://github.com/chiaraberti13/WEBFANG/issues">Issue</a></p>
+<p align="center"><a href="docs/ROADMAP.md"><strong>Roadmap</strong></a> · <a href="SECURITY.md">Sicurezza</a> · <a href="CONTRIBUTING.md">Contribuire</a> · <a href="descrizione.md">Descrizione del progetto</a> · <a href="LICENSE">Licenza</a> · <a href="https://github.com/chiaraberti13/WEBFANG/issues">Issue</a></p>
 
 > [!IMPORTANT]
 > **Sviluppo iniziale — fase di scaffold.** Il repository ha il contratto dati,
 > il tooling di qualità e le fondamenta di progetto. Il motore ricetta, il
 > catalogo delle trasformazioni, i pannelli Difesa e la modalità guidata sono
-> in costruzione per incrementi (vedi [`roadmap.md`](roadmap.md), Fase 0 → MVP).
+> in costruzione per incrementi (vedi [`docs/ROADMAP.md`](docs/ROADMAP.md), Fase 0 → MVP).
 
 ## Navigazione rapida
 
@@ -65,18 +65,18 @@ guidata e il wizard "non so cosa mi serve".
 - Tooling pinnato e restrizioni sugli script d'installazione in [`.npmrc`](.npmrc).
 - Un'impalcatura applicativa Vite + React 19, con variante di build normale (PWA)
   e single-file (un unico HTML, eseguibile da `file://`).
-- Una specifica di prodotto, una roadmap di sviluppo e le decisioni tecniche (ADR).
-- Questa presentazione bilingue e la documentazione pubblica.
+- Una roadmap di sviluppo ([`docs/ROADMAP.md`](docs/ROADMAP.md)) e una descrizione
+  bilingue del progetto ([`descrizione.md`](descrizione.md)).
+- Questa presentazione bilingue (README EN/IT).
 
 Non è disponibile alcuna release. Non dedurre la sicurezza a runtime dai controlli
-di scaffold. Vedi [stato dello sviluppo](docs/presentation/development-status.it.md).
+di scaffold.
 
 ## Setup di sviluppo
 
 Installa Git, una linea Node.js accettata (**22.x o 24.x**) e **pnpm 10.28.0**
 (via `corepack`). La versione Node esatta consigliata è in [`.nvmrc`](.nvmrc);
-l'intervallo accettato è in [`package.json`](package.json) e nell'
-[ADR 0001](docs/adr/0001-stack.md).
+l'intervallo accettato è in [`package.json`](package.json).
 
 ```bash
 git clone https://github.com/chiaraberti13/WEBFANG.git
@@ -109,22 +109,18 @@ sanificato con DOMPurify solo dove un'anteprima live è davvero necessaria. Un
 payload generato è didattico e inerte — **non prova una vulnerabilità**.
 
 Usa il tool solo su sistemi, file e account propri o esplicitamente autorizzati.
-Leggi [ambito di sicurezza e segnalazione](SECURITY.it.md) e la
-[promessa di privacy](project.md#part-b--security-and-privacy).
+Leggi [ambito di sicurezza e segnalazione](SECURITY.md).
 
 ## Documentazione e roadmap
 
-[Panoramica](docs/presentation/overview.it.md) ·
-[Stato dello sviluppo](docs/presentation/development-status.it.md) ·
-[Tutta la documentazione](docs/README.it.md)
+Il documento di progetto e il piano a fasi sono in [`docs/ROADMAP.md`](docs/ROADMAP.md);
+una descrizione bilingue, orientata al CV, è in [`descrizione.md`](descrizione.md).
 
 La documentazione pubblica è disponibile in inglese e italiano. La UI a runtime è
-bilingue IT/EN by design; le specifiche tecniche, gli ADR e
-[`roadmap.md`](roadmap.md) restano in inglese. Vedi
-[ADR 0004](docs/adr/0004-bilingual-public-documentation.md).
+bilingue IT/EN by design; il documento di roadmap è scritto in italiano.
 
 I contributi usano branch dedicati e pull request. Consulta
-[CONTRIBUTING.it.md](CONTRIBUTING.it.md) prima di modificare codice o documentazione.
+[CONTRIBUTING.md](CONTRIBUTING.md) prima di modificare codice o documentazione.
 
 ## Licenza
 
