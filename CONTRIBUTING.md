@@ -101,3 +101,13 @@ semanticamente equivalente.
 Descrivi cosa cambia, perché, verifiche eseguite, impatto sicurezza/privacy,
 compatibilità e note di rollback/migrazione. La CI (lint, typecheck, test, build)
 deve essere verde. Si applica `CODE_OF_CONDUCT.md`.
+
+## Segnalazioni e verifica dei contributi
+
+Toolkit didattico lato client per trasformazioni web e relative difese.
+
+Usa i [modelli di segnalazione](https://github.com/chiaraberti13/WEBFANG/issues/new/choose) per bug, miglioramenti e barriere di accessibilità. Prima di aprire una nuova segnalazione verifica se ne esiste già una equivalente. Contesto utile: Versione pnpm, browser, trasformazione o contratto dati e input sintetico.
+
+Per le modifiche, compila il modello di pull request e indica verifiche eseguite, esito e verifiche non eseguite con il motivo. Mantieni le istruzioni specifiche di questo progetto e la parità delle lingue già disponibili. Non allegare dati di produzione, credenziali o dati personali; usa esempi sintetici.
+
+Consulta [il codice di condotta](CODE_OF_CONDUCT.md), [la policy di sicurezza](SECURITY.md) e [le indicazioni di accessibilità](ACCESSIBILITY.md). Le vulnerabilità seguono esclusivamente il percorso descritto nella policy di sicurezza.
