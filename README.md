@@ -125,11 +125,11 @@ Contributions use dedicated branches and pull requests. Consult
 WebFang is distributed under the **GNU GPL-3.0 License**. See [`LICENSE`](LICENSE)
 for the full terms. Third-party dependencies remain subject to their own licences.
 
-## Comunità e collaborazione
+## Community and collaboration
 
-- [Come contribuire](CONTRIBUTING.md)
-- [Codice di condotta](CODE_OF_CONDUCT.md)
-- [Segnalazioni di sicurezza](SECURITY.md)
-- [Accessibilità e limiti delle verifiche](ACCESSIBILITY.md)
-- [Segnalare un problema o proporre un miglioramento](https://github.com/chiaraberti13/WEBFANG/issues/new/choose)
-- [Licenza del progetto](LICENSE)
+- [Contributing](CONTRIBUTING.md)
+- [Code of conduct](CODE_OF_CONDUCT.md)
+- [Security reports](SECURITY.md)
+- [Accessibility and verification limits](ACCESSIBILITY.md)
+- [Report a problem or propose an improvement](https://github.com/chiaraberti13/WEBFANG/issues/new/choose)
+- [Project license](LICENSE)

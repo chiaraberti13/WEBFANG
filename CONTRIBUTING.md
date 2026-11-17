@@ -1,13 +1,9 @@
 # Contributing to WebFang
 
-<p align="center"><a href="#english">🇬🇧 English</a> · <a href="#italiano">🇮🇹 Italiano</a></p>
-
-## English
-
 This repository covers a client-side offensive web security toolkit that binds
 every transformation to its context of use and its defensive countermeasure.
 
-### Before you start
+## Before you start
 
 1. Read `README.md`, `SECURITY.md` and [`docs/ROADMAP.md`](docs/ROADMAP.md).
 2. Search existing issues and use a dedicated branch (`feat/…`, `fix/…`).
@@ -16,14 +12,14 @@ every transformation to its context of use and its defensive countermeasure.
    stay didactic and inert (e.g. `alert(document.domain)`, `' OR 1=1--`).
 5. Report vulnerabilities privately (see `SECURITY.md`).
 
-### Setup
+## Setup
 
 ```bash
 corepack enable
 pnpm install --frozen-lockfile
 ```
 
-### Checks
+## Checks
 
 ```bash
 pnpm typecheck
@@ -35,7 +31,7 @@ pnpm test
 At the current scaffold stage, do not document planned transformations, defense
 panels or runtime controls as implemented.
 
-### Engineering expectations
+## Engineering expectations
 
 Honour the four non-negotiable constraints: **security/ethics** (every attack
 ships with its defense; no weaponized exploits), **privacy** (local processing;
@@ -43,71 +39,18 @@ no secret leaves the browser), **the text/byte data contract**, and the **design
 system and AA accessibility**. Keep logic pure and separate from the UI; adding a
 payload means adding **data**, not code. Validate untrusted input, fail safely,
 keep dependencies minimal and justified, and add tests for behavioural changes.
-Update English documentation first and keep Italian public documentation
-semantically aligned.
+Write documentation in English and keep both README editions semantically aligned.
 
-### Pull requests
+## Pull requests
 
 Describe what changed, why, verification performed, security/privacy impact,
 compatibility implications and rollback/migration notes. CI (lint, typecheck,
 tests, build) must be green. Participation follows `CODE_OF_CONDUCT.md`.
 
-## Italiano
+## Reporting and contribution checks
 
-Questo repository riguarda un toolkit lato client di sicurezza web offensiva che
-lega ogni trasformazione al suo contesto d'uso e alla sua contromisura difensiva.
+Use the [issue templates](https://github.com/chiaraberti13/WEBFANG/issues/new/choose) and check for duplicates first. Useful context: pnpm version, browser, transformation or data contract and synthetic input.
 
-### Prima di iniziare
+Write community and technical documentation in English; maintain equivalent English and Italian READMEs. Preserve existing application translations. Fill in the pull request template with commands, results and checks not performed, including the reason. Use synthetic examples without secrets or personal data.
 
-1. Leggi `README.md`, `SECURITY.md` e [`docs/ROADMAP.md`](docs/ROADMAP.md).
-2. Controlla le issue esistenti e usa un branch dedicato (`feat/…`, `fix/…`).
-3. Mantieni ogni pull request focalizzata, senza refactor non correlati.
-4. Non committare segreti, dati privati o informazioni su target reali. I payload
-   devono restare didattici e inerti (es. `alert(document.domain)`, `' OR 1=1--`).
-5. Segnala privatamente le vulnerabilità (vedi `SECURITY.md`).
-
-### Setup
-
-```bash
-corepack enable
-pnpm install --frozen-lockfile
-```
-
-### Controlli
-
-```bash
-pnpm typecheck
-pnpm lint
-pnpm format:check
-pnpm test
-```
-
-Nella fase attuale di scaffold, non documentare come implementate trasformazioni,
-pannelli Difesa o controlli a runtime ancora pianificati.
-
-### Aspettative tecniche
-
-Rispetta i quattro vincoli non negoziabili: **sicurezza/etica** (ogni attacco con
-la sua difesa; nessun exploit armato), **privacy** (elaborazione locale; nessun
-segreto fuori dal browser), **contratto dati testo/byte** e **design system +
-accessibilità AA**. Mantieni la logica pura e separata dalla UI; aggiungere un
-payload significa aggiungere **dati**, non codice. Valida gli input non fidati,
-usa comportamenti fail-safe, mantieni le dipendenze minime e motivate e aggiorna i
-test. Aggiorna prima la documentazione inglese e mantieni quella pubblica italiana
-semanticamente equivalente.
-
-### Pull request
-
-Descrivi cosa cambia, perché, verifiche eseguite, impatto sicurezza/privacy,
-compatibilità e note di rollback/migrazione. La CI (lint, typecheck, test, build)
-deve essere verde. Si applica `CODE_OF_CONDUCT.md`.
-
-## Segnalazioni e verifica dei contributi
-
-Toolkit didattico lato client per trasformazioni web e relative difese.
-
-Usa i [modelli di segnalazione](https://github.com/chiaraberti13/WEBFANG/issues/new/choose) per bug, miglioramenti e barriere di accessibilità. Prima di aprire una nuova segnalazione verifica se ne esiste già una equivalente. Contesto utile: Versione pnpm, browser, trasformazione o contratto dati e input sintetico.
-
-Per le modifiche, compila il modello di pull request e indica verifiche eseguite, esito e verifiche non eseguite con il motivo. Mantieni le istruzioni specifiche di questo progetto e la parità delle lingue già disponibili. Non allegare dati di produzione, credenziali o dati personali; usa esempi sintetici.
-
-Consulta [il codice di condotta](CODE_OF_CONDUCT.md), [la policy di sicurezza](SECURITY.md) e [le indicazioni di accessibilità](ACCESSIBILITY.md). Le vulnerabilità seguono esclusivamente il percorso descritto nella policy di sicurezza.
+See [the code of conduct](CODE_OF_CONDUCT.md), [security policy](SECURITY.md) and [accessibility statement](ACCESSIBILITY.md). Report vulnerabilities only through the security policy process.
