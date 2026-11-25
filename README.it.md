@@ -32,6 +32,7 @@
 
 ## Navigazione rapida
 
+- [Diagramma dell’architettura](#-diagramma-dellarchitettura)
 - [Cos'è WebFang?](#cosè-webfang)
 - [Cosa esiste oggi?](#cosa-esiste-oggi)
 - [Setup di sviluppo](#setup-di-sviluppo)
@@ -71,6 +72,29 @@ guidata e il wizard "non so cosa mi serve".
 
 Non è disponibile alcuna release. Non dedurre la sicurezza a runtime dai controlli
 di scaffold.
+
+## 🗺️ Diagramma dell’architettura
+
+```mermaid
+flowchart TD
+    accTitle: Architettura di WEBFANG
+    accDescr: Vite distribuisce la stessa app React come PWA installabile o come file HTML autonomo. In entrambe le versioni la demo Base64 elabora il testo localmente e un worker verifica le funzionalità del browser all’avvio.
+    vite["Vite"] --> pwa["PWA installabile"]
+    vite --> file["File HTML autonomo"]
+    pwa --> app["Interfaccia React"]
+    file --> app
+    app --> demo["Conversione da testo a byte"]
+    demo --> output64["Anteprima Base64"]
+    app --> probe["Worker di avvio"]
+    probe --> checks["Verifica di WebCrypto e WebAssembly"]
+
+    classDef core fill:#23313a,stroke:#7193a7,color:#f4f7f8;
+    classDef output fill:#2b3035,stroke:#8b959e,color:#f4f7f8;
+    class app,demo,probe core;
+    class output64,checks output;
+```
+
+Vite distribuisce la stessa app React come PWA installabile o come file HTML autonomo. In entrambe le versioni la demo Base64 elabora il testo localmente e un worker verifica le funzionalità del browser all’avvio.
 
 ## Setup di sviluppo
 

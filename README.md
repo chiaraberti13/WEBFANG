@@ -32,6 +32,7 @@
 
 ## Quick navigation
 
+- [Architecture Diagram](#-architecture-diagram)
 - [What is WebFang?](#what-is-webfang)
 - [What exists today?](#what-exists-today)
 - [Development setup](#development-setup)
@@ -70,6 +71,29 @@ correct fix into their stack. A beginner uses the guided mode and the
 - This bilingual presentation (README EN/IT).
 
 No release is available yet. Do not infer runtime security from scaffold checks.
+
+## 🗺️ Architecture Diagram
+
+```mermaid
+flowchart TD
+    accTitle: Architecture of WEBFANG
+    accDescr: Vite builds the same React app as an installable PWA or a standalone HTML file. In both versions, the Base64 demo runs locally and a separate worker checks browser capabilities at startup.
+    vite["Vite"] --> pwa["Installable PWA"]
+    vite --> file["Standalone HTML file"]
+    pwa --> app["React interface"]
+    file --> app
+    app --> demo["Text to bytes"]
+    demo --> output64["Base64 preview"]
+    app --> probe["Startup worker"]
+    probe --> checks["WebCrypto and WebAssembly checks"]
+
+    classDef core fill:#23313a,stroke:#7193a7,color:#f4f7f8;
+    classDef output fill:#2b3035,stroke:#8b959e,color:#f4f7f8;
+    class app,demo,probe core;
+    class output64,checks output;
+```
+
+Vite builds the same React app as an installable PWA or a standalone HTML file. In both versions, the Base64 demo runs locally and a separate worker checks browser capabilities at startup.
 
 ## Development setup
 
