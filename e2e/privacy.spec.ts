@@ -29,6 +29,7 @@ test('makes no unexpected network requests while in use', async ({ page }) => {
   await page.getByRole('tab', { name: 'Contesto XSS' }).click();
   await page.getByRole('button', { name: 'Non so cosa mi serve' }).click();
   await page.getByRole('button', { name: 'URL / href' }).click();
+  await page.getByRole('tab', { name: 'Payload' }).click();
   await page.getByRole('tab', { name: 'Trasforma' }).click();
   await page.waitForTimeout(500);
 

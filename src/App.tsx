@@ -2,15 +2,18 @@ import { useEffect, useState } from 'react';
 import { useAppStore } from './store.ts';
 import { translate, type Lang } from './i18n/index.ts';
 import { XSS_CONTEXTS } from './content/xss.ts';
+import { PAYLOAD_PACKS } from './content/payloads.ts';
 import { Workbench } from './components/Workbench.tsx';
 import { RecipeBoard } from './components/RecipeBoard.tsx';
 import { XssExplorer } from './components/XssExplorer.tsx';
+import { PayloadExplorer } from './components/PayloadExplorer.tsx';
 import { Wizard } from './components/Wizard.tsx';
 import { Onboarding } from './components/Onboarding.tsx';
 
-type Tab = 'transform' | 'compose' | 'context';
+type Tab = 'transform' | 'compose' | 'context' | 'payloads';
 
 const FIRST_CONTEXT_ID = XSS_CONTEXTS[0]?.id ?? '';
+const FIRST_PACK_ID = PAYLOAD_PACKS[0]?.id ?? '';
 
 export default function App() {
   const {
@@ -33,6 +36,7 @@ export default function App() {
   const [wizardOpen, setWizardOpen] = useState(false);
   const [onboardingOpen, setOnboardingOpen] = useState(!onboardingSeen);
   const [xssContextId, setXssContextId] = useState(FIRST_CONTEXT_ID);
+  const [packId, setPackId] = useState(FIRST_PACK_ID);
 
   const t = (key: string) => translate(lang, key);
 
@@ -113,20 +117,22 @@ export default function App() {
       </header>
 
       <nav className="wf-tabs" role="tablist" aria-label="WebFang">
-        {(['transform', 'compose', 'context'] as const).map((id) => (
-          <button
-            key={id}
-            type="button"
-            role="tab"
-            id={`wf-tab-${id}`}
-            aria-selected={tab === id}
-            aria-controls={`wf-panel-${id}`}
-            className={`wf-tab ${tab === id ? 'wf-tab--active' : ''}`}
-            onClick={() => setTab(id)}
-          >
-            {t(`tab.${id}`)}
-          </button>
-        ))}
+        {(['transform', 'compose', 'context', 'payloads'] as const).map(
+          (id) => (
+            <button
+              key={id}
+              type="button"
+              role="tab"
+              id={`wf-tab-${id}`}
+              aria-selected={tab === id}
+              aria-controls={`wf-panel-${id}`}
+              className={`wf-tab ${tab === id ? 'wf-tab--active' : ''}`}
+              onClick={() => setTab(id)}
+            >
+              {t(`tab.${id}`)}
+            </button>
+          ),
+        )}
       </nav>
 
       {mode === 'guided' && <p className="wf-guide">{t(`guide.${tab}`)}</p>}
@@ -144,6 +150,13 @@ export default function App() {
             lang={lang}
             contextId={xssContextId}
             onContextChange={setXssContextId}
+          />
+        )}
+        {tab === 'payloads' && (
+          <PayloadExplorer
+            lang={lang}
+            packId={packId}
+            onPackChange={setPackId}
           />
         )}
       </main>

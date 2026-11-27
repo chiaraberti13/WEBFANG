@@ -96,6 +96,8 @@ const it: Catalog = {
   'guide.compose':
     'Aggiungi passaggi per concatenare le trasformazioni; ognuno mostra il suo risultato.',
   'guide.context': 'Non sai da dove partire? Usa “Non so cosa mi serve”.',
+  'guide.payloads':
+    'Scegli una famiglia d’attacco: payload inerti a sinistra, difesa sotto.',
 
   'xss.html-body.label': 'HTML body',
   'xss.html-body.description':
@@ -163,6 +165,85 @@ const it: Catalog = {
     'Inerte: dimostra il vettore SVG, non un impatto.',
   'defense.xss.svg.defense':
     'Sanifica l’SVG con DOMPurify (profilo SVG) rimuovendo gli handler; servilo come immagine, non inline nel DOM.',
+
+  // --- payload pack ---
+  'tab.payloads': 'Payload',
+  'payloads.title': 'Payload pack',
+  'payloads.intro':
+    'Famiglie d’attacco con payload inerti e la relativa difesa. Gli esempi sono didattici: non provano una vulnerabilità.',
+  'payloads.pick': 'Famiglia',
+  'payloads.list': 'Payload inerti',
+  'payloads.copy': 'Copia',
+
+  'pack.sqli.label': 'SQL injection',
+  'pack.sqli.description': 'Input che altera una query SQL.',
+  'defense.pack.sqli.what':
+    'Rompe la sintassi della query (virgolette, OR, UNION, commenti) per alterarne la logica.',
+  'defense.pack.sqli.where':
+    'Query costruite concatenando input: login, ricerche, filtri, ordinamenti.',
+  'defense.pack.sqli.notProve':
+    'Le sonde (OR 1=1, UNION NULL) mostrano l’iniezione, non estraggono dati: sono inerti.',
+  'defense.pack.sqli.defense':
+    'Usa sempre query parametrizzate/prepared statement; allowlist per gli identificatori (colonne/ORDER BY); privilegi minimi del DB. Mai concatenare input.',
+
+  'pack.ssti.label': 'SSTI (template)',
+  'pack.ssti.description':
+    'Input valutato da un motore di template server-side.',
+  'defense.pack.ssti.what':
+    'L’input viene valutato dal motore di template: {{7*7}} diventa 49.',
+  'defense.pack.ssti.where':
+    'Template che interpolano input non fidato (Jinja2, Twig, Freemarker, ERB).',
+  'defense.pack.ssti.notProve':
+    'Le sonde calcolano solo 7*7: dimostrano la valutazione, non l’esecuzione di codice.',
+  'defense.pack.ssti.defense':
+    'Non passare input come template; usa template statici con contesto dati. Sandbox del motore e logica fuori dai template.',
+
+  'pack.lfi.label': 'LFI / Path traversal',
+  'pack.lfi.description':
+    'Input che risale il filesystem per includere o leggere file.',
+  'defense.pack.lfi.what':
+    'Sequenze ../ (anche codificate) risalgono le cartelle per raggiungere file fuori dalla radice.',
+  'defense.pack.lfi.where':
+    'Parametri che indicano file o path: include, download, template, lingua.',
+  'defense.pack.lfi.notProve':
+    'Il path di /etc/passwd è la sonda classica: qui è solo una stringa, non un accesso reale.',
+  'defense.pack.lfi.defense':
+    'Allowlist di file/ID; risolvi il path canonico e verifica che resti nella radice consentita; niente path da input.',
+
+  'pack.cmd-injection.label': 'Command injection',
+  'pack.cmd-injection.description': 'Input che inietta comandi nella shell.',
+  'defense.pack.cmd-injection.what':
+    'Metacaratteri di shell (; | $() ` &&) aggiungono comandi a quello previsto.',
+  'defense.pack.cmd-injection.where':
+    'Chiamate a comandi di sistema costruite con input: ping, conversioni, archivi.',
+  'defense.pack.cmd-injection.notProve':
+    'I comandi mostrati (id/whoami) sono benigni: evidenziano l’iniezione, non danneggiano nulla.',
+  'defense.pack.cmd-injection.defense':
+    'Evita la shell: usa API con argomenti separati (execFile) e allowlist; mai passare input a una shell.',
+
+  'pack.ssrf.label': 'SSRF',
+  'pack.ssrf.description':
+    'Input che fa partire richieste dal server verso risorse interne.',
+  'defense.pack.ssrf.what':
+    'Un URL fornito dall’utente fa eseguire al server richieste verso host interni o metadata cloud.',
+  'defense.pack.ssrf.where':
+    'Funzioni che scaricano URL forniti: webhook, anteprime, import, proxy.',
+  'defense.pack.ssrf.notProve':
+    'Gli URL (127.0.0.1, 169.254.169.254) sono sonde: qui non viene fatta alcuna richiesta.',
+  'defense.pack.ssrf.defense':
+    'Allowlist di host e schemi; risolvi e blocca IP privati/link-local; disabilita i redirect; usa un egress proxy dedicato.',
+
+  'pack.open-redirect.label': 'Open redirect',
+  'pack.open-redirect.description':
+    'Input usato come destinazione di un redirect.',
+  'defense.pack.open-redirect.what':
+    'L’input diventa la destinazione di un redirect, portando l’utente su un dominio esterno.',
+  'defense.pack.open-redirect.where':
+    'Parametri returnUrl/next/redirect dopo login o azioni.',
+  'defense.pack.open-redirect.notProve':
+    'Le destinazioni usano domini di esempio: mostrano il vettore, non un attacco reale.',
+  'defense.pack.open-redirect.defense':
+    'Allowlist di destinazioni relative o di host noti; non redirigere verso URL assoluti da input; valida schema e host.',
 
   // --- categorie ---
   'cat.encode': 'Codifica / decodifica',
@@ -403,6 +484,8 @@ const en: Catalog = {
   'guide.compose':
     'Add steps to chain transformations; each one shows its own result.',
   'guide.context': 'Not sure where to start? Use “I don’t know what I need”.',
+  'guide.payloads':
+    'Pick an attack family: inert payloads on the left, defense below.',
 
   'xss.html-body.label': 'HTML body',
   'xss.html-body.description':
@@ -468,6 +551,83 @@ const en: Catalog = {
   'defense.xss.svg.notProve': 'Inert: it shows the SVG vector, not impact.',
   'defense.xss.svg.defense':
     'Sanitize the SVG with DOMPurify (SVG profile) removing handlers; serve it as an image, not inline in the DOM.',
+
+  'tab.payloads': 'Payloads',
+  'payloads.title': 'Payload packs',
+  'payloads.intro':
+    'Attack families with inert payloads and their defense. The examples are didactic: they do not prove a vulnerability.',
+  'payloads.pick': 'Family',
+  'payloads.list': 'Inert payloads',
+  'payloads.copy': 'Copy',
+
+  'pack.sqli.label': 'SQL injection',
+  'pack.sqli.description': 'Input that alters a SQL query.',
+  'defense.pack.sqli.what':
+    'Breaks the query syntax (quotes, OR, UNION, comments) to alter its logic.',
+  'defense.pack.sqli.where':
+    'Queries built by concatenating input: login, search, filters, ordering.',
+  'defense.pack.sqli.notProve':
+    'The probes (OR 1=1, UNION NULL) show injection, they do not extract data: inert.',
+  'defense.pack.sqli.defense':
+    'Always use parameterized/prepared statements; allowlist identifiers (columns/ORDER BY); least-privilege DB. Never concatenate input.',
+
+  'pack.ssti.label': 'SSTI (templates)',
+  'pack.ssti.description': 'Input evaluated by a server-side template engine.',
+  'defense.pack.ssti.what':
+    'The input is evaluated by the template engine: {{7*7}} becomes 49.',
+  'defense.pack.ssti.where':
+    'Templates interpolating untrusted input (Jinja2, Twig, Freemarker, ERB).',
+  'defense.pack.ssti.notProve':
+    'The probes only compute 7*7: they show evaluation, not code execution.',
+  'defense.pack.ssti.defense':
+    'Do not pass input as a template; use static templates with a data context. Sandbox the engine and keep logic out of templates.',
+
+  'pack.lfi.label': 'LFI / Path traversal',
+  'pack.lfi.description':
+    'Input that climbs the filesystem to include or read files.',
+  'defense.pack.lfi.what':
+    '../ sequences (also encoded) climb directories to reach files outside the root.',
+  'defense.pack.lfi.where':
+    'Parameters naming a file or path: include, download, template, language.',
+  'defense.pack.lfi.notProve':
+    'Reading /etc/passwd is the classic probe: here it is just a string, not real access.',
+  'defense.pack.lfi.defense':
+    'Allowlist files/IDs; resolve the canonical path and verify it stays within the allowed root; no paths from input.',
+
+  'pack.cmd-injection.label': 'Command injection',
+  'pack.cmd-injection.description':
+    'Input that injects commands into the shell.',
+  'defense.pack.cmd-injection.what':
+    'Shell metacharacters (; | $() ` &&) append commands to the intended one.',
+  'defense.pack.cmd-injection.where':
+    'System-command calls built from input: ping, conversions, archives.',
+  'defense.pack.cmd-injection.notProve':
+    'The shown commands (id/whoami) are benign: they show injection, they harm nothing.',
+  'defense.pack.cmd-injection.defense':
+    'Avoid the shell: use APIs with separate arguments (execFile) and an allowlist; never pass input to a shell.',
+
+  'pack.ssrf.label': 'SSRF',
+  'pack.ssrf.description':
+    'Input that makes the server issue requests to internal resources.',
+  'defense.pack.ssrf.what':
+    'A user-supplied URL makes the server request internal hosts or cloud metadata.',
+  'defense.pack.ssrf.where':
+    'Functions that fetch supplied URLs: webhooks, previews, imports, proxies.',
+  'defense.pack.ssrf.notProve':
+    'The URLs (127.0.0.1, 169.254.169.254) are probes: no request is made here.',
+  'defense.pack.ssrf.defense':
+    'Allowlist hosts and schemes; resolve and block private/link-local IPs; disable redirects; use a dedicated egress proxy.',
+
+  'pack.open-redirect.label': 'Open redirect',
+  'pack.open-redirect.description': 'Input used as a redirect destination.',
+  'defense.pack.open-redirect.what':
+    'The input becomes a redirect destination, taking the user to an external domain.',
+  'defense.pack.open-redirect.where':
+    'returnUrl/next/redirect parameters after login or actions.',
+  'defense.pack.open-redirect.notProve':
+    'The destinations use example domains: they show the vector, not a real attack.',
+  'defense.pack.open-redirect.defense':
+    'Allowlist relative destinations or known hosts; do not redirect to absolute URLs from input; validate scheme and host.',
 
   'cat.encode': 'Encode / decode',
   'cat.hash': 'Hashing',
