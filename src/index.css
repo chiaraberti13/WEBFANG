@@ -65,6 +65,7 @@ body {
 
 :where(a) {
   color: var(--wf-amber);
+  text-decoration: underline;
 }
 
 :where(button, select, textarea, input, a):focus-visible {
