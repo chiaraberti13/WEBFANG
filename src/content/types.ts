@@ -19,14 +19,31 @@ export interface DefenseRef {
   owasp?: string;
 }
 
+/** Una famiglia d'attacco con i suoi payload inerti (vedi content/payloads.ts). */
+export interface PayloadPack extends DefenseSubject {
+  payloads: string[];
+}
+
+/** Snippet di remediation pronto da incollare, per linguaggio/stack. */
+export interface RemediationSnippet {
+  /** chiave stack, es. 'node', 'python', 'php', 'go', 'react'. */
+  lang: string;
+  /** etichetta leggibile mostrata nel selettore, es. 'Node.js (pg)'. */
+  label: string;
+  /** codice sicuro, mostrato come testo e copiabile. */
+  code: string;
+}
+
 /**
- * Qualunque cosa abbia un pannello Difesa: un'operazione o un contesto XSS.
- * Chiavi i18n attese: `defense.<i18nBase>.{what,where,notProve,defense}`.
+ * Qualunque cosa abbia un pannello Difesa: un'operazione, un contesto XSS o un
+ * payload pack. Chiavi i18n attese: `defense.<i18nBase>.{what,where,notProve,defense}`.
+ * Opzionalmente porta snippet di remediation copy-paste.
  */
 export interface DefenseSubject {
   id: string;
   i18nBase: string;
   defense: DefenseRef;
+  remediation?: RemediationSnippet[];
 }
 
 /** Parametro booleano configurabile dall'utente (es. Base64 URL-safe). */

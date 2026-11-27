@@ -258,6 +258,7 @@ const it: Catalog = {
   'defense.notProve': 'Cosa non dimostra',
   'defense.defense': 'Come difendersi',
   'defense.refs': 'Riferimenti',
+  'defense.fix': 'Fix copy-paste',
   'defense.disclaimer':
     'Un esempio generato è inerte e didattico: non prova una vulnerabilità.',
 
@@ -640,6 +641,7 @@ const en: Catalog = {
   'defense.notProve': 'What it does not prove',
   'defense.defense': 'How to defend',
   'defense.refs': 'References',
+  'defense.fix': 'Copy-paste fix',
   'defense.disclaimer':
     'A generated example is inert and didactic: it does not prove a vulnerability.',
 

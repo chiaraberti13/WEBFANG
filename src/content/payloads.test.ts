@@ -32,6 +32,20 @@ describe('payload pack catalogue', () => {
     }
   });
 
+  it('ships copy-paste remediation snippets for every pack', () => {
+    for (const pack of PAYLOAD_PACKS) {
+      expect(
+        pack.remediation?.length,
+        `no remediation for ${pack.id}`,
+      ).toBeTruthy();
+      for (const snippet of pack.remediation ?? []) {
+        expect(snippet.lang).toBeTruthy();
+        expect(snippet.label).toBeTruthy();
+        expect(snippet.code.length).toBeGreaterThan(0);
+      }
+    }
+  });
+
   it('provides label, description and the four defense answers in IT and EN', () => {
     for (const pack of PAYLOAD_PACKS) {
       for (const suffix of ['label', 'description']) {

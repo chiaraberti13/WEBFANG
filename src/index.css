@@ -547,6 +547,42 @@ body {
   word-break: break-word;
 }
 
+/* ---- Copy-paste fix ---- */
+.wf-fix {
+  margin-top: 0.9rem;
+}
+
+.wf-fix__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.4rem;
+}
+
+.wf-fix__controls {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.wf-fix__code {
+  margin: 0;
+  background: var(--wf-bg);
+  border: 1px solid var(--wf-border);
+  border-radius: 8px;
+  padding: 0.6rem 0.7rem;
+  overflow-x: auto;
+}
+
+.wf-fix__code code {
+  font-family: var(--wf-mono);
+  font-size: 0.82rem;
+  white-space: pre;
+  color: var(--wf-fg);
+}
+
 /* ---- Footer ---- */
 .wf-footer {
   border-top: 1px solid var(--wf-border);

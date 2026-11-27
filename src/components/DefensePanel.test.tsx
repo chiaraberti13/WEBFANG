@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { DefensePanel } from './DefensePanel.tsx';
 import { OPERATION_BY_ID } from '../content/operations.ts';
+import { PACK_BY_ID } from '../content/payloads.ts';
 import { translate } from '../i18n/index.ts';
 
 const meta = OPERATION_BY_ID.get('base64-encode')!;
@@ -33,5 +34,20 @@ describe('DefensePanel', () => {
     expect(
       screen.getByRole('region', { name: translate('en', 'defense.title') }),
     ).toBeInTheDocument();
+  });
+
+  it('shows copy-paste remediation when the subject provides it', () => {
+    const sqli = PACK_BY_ID.get('sqli')!;
+    render(<DefensePanel subject={sqli} lang="it" />);
+    expect(
+      screen.getByText(translate('it', 'defense.fix')),
+    ).toBeInTheDocument();
+    // the default snippet (Node pg) is shown as code
+    expect(screen.getByText(/node-postgres/)).toBeInTheDocument();
+  });
+
+  it('does not render a fix block when there is no remediation', () => {
+    render(<DefensePanel subject={meta} lang="it" />);
+    expect(screen.queryByText(translate('it', 'defense.fix'))).toBeNull();
   });
 });
