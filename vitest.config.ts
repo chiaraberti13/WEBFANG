@@ -12,7 +12,7 @@ export default defineConfig({
     coverage: {
       provider: 'v8',
       // la soglia vincolante del progetto è su lib/ e core/ (logica pura)
-      include: ['src/lib/**', 'src/core/**'],
+      include: ['src/lib/**', 'src/core/**', 'src/recipes/**'],
       thresholds: {
         lines: 80,
         functions: 80,
