@@ -22,7 +22,7 @@
 > **context of use** and its **defensive countermeasure** — usable by experts
 > and beginners alike.
 
-<p align="center"><a href="https://webfang.vercel.app"><strong>Live demo</strong></a> · <a href="docs/ROADMAP.md"><strong>Roadmap</strong></a> · <a href="SECURITY.md">Security</a> · <a href="CONTRIBUTING.md">Contributing</a> · <a href="descrizione.md">Project description</a> · <a href="LICENSE">Licence</a> · <a href="https://github.com/chiaraberti13/WEBFANG/issues">Issues</a></p>
+<p align="center"><a href="docs/ROADMAP.md"><strong>Roadmap</strong></a> · <a href="SECURITY.md">Security</a> · <a href="CONTRIBUTING.md">Contributing</a> · <a href="descrizione.md">Project description</a> · <a href="LICENSE">Licence</a> · <a href="https://github.com/chiaraberti13/WEBFANG/issues">Issues</a></p>
 
 > [!IMPORTANT]
 > **Early development — scaffold stage.** The repository has the data contract,
