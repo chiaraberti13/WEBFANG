@@ -29,6 +29,33 @@ const it: Catalog = {
   'app.footerDisclaimer':
     'Payload inerti, per test autorizzati, CTF e studio. L’uso non autorizzato è illegale e a responsabilità dell’utente.',
 
+  // --- flusso "componi" (ricetta) ---
+  'tab.transform': 'Trasforma',
+  'tab.compose': 'Componi',
+  'recipe.empty': 'Aggiungi un passaggio per comporre una trasformazione.',
+  'recipe.addStep': 'Aggiungi passaggio',
+  'recipe.step': 'Passaggio {n}',
+  'recipe.remove': 'Rimuovi passaggio',
+  'recipe.moveUp': 'Sposta su',
+  'recipe.moveDown': 'Sposta giù',
+  'recipe.undo': 'Annulla',
+  'recipe.redo': 'Ripeti',
+  'recipe.result': 'Risultato',
+  'recipe.finalOutput': 'Output finale',
+  'recipe.share': 'Copia link',
+  'recipe.linkCopied': 'Link copiato',
+  'recipe.shareTooLong':
+    'Ricetta troppo lunga per un link condivisibile: usa Esporta JSON.',
+  'recipe.export': 'Esporta JSON',
+  'recipe.import': 'Importa JSON',
+  'recipe.importPlaceholder': 'Incolla qui il JSON della ricetta…',
+  'recipe.load': 'Carica',
+  'recipe.loadedFromUrl': 'Ricetta caricata dal link condiviso.',
+  'recipe.err.corrupt': 'Link o JSON corrotto.',
+  'recipe.err.invalid': 'Ricetta non valida.',
+  'recipe.err.unknown-op':
+    'La ricetta usa un’operazione sconosciuta: rifiutata.',
+
   // --- categorie ---
   'cat.encode': 'Codifica / decodifica',
   'cat.hash': 'Hashing',
@@ -192,6 +219,31 @@ const en: Catalog = {
   'app.builtBy': 'Built by Chiara Berti',
   'app.footerDisclaimer':
     'Inert payloads, for authorized testing, CTF and study. Unauthorized use is illegal and the user’s responsibility.',
+
+  'tab.transform': 'Transform',
+  'tab.compose': 'Compose',
+  'recipe.empty': 'Add a step to compose a transformation.',
+  'recipe.addStep': 'Add step',
+  'recipe.step': 'Step {n}',
+  'recipe.remove': 'Remove step',
+  'recipe.moveUp': 'Move up',
+  'recipe.moveDown': 'Move down',
+  'recipe.undo': 'Undo',
+  'recipe.redo': 'Redo',
+  'recipe.result': 'Result',
+  'recipe.finalOutput': 'Final output',
+  'recipe.share': 'Copy link',
+  'recipe.linkCopied': 'Link copied',
+  'recipe.shareTooLong':
+    'Recipe too long for a shareable link: use Export JSON.',
+  'recipe.export': 'Export JSON',
+  'recipe.import': 'Import JSON',
+  'recipe.importPlaceholder': 'Paste the recipe JSON here…',
+  'recipe.load': 'Load',
+  'recipe.loadedFromUrl': 'Recipe loaded from the shared link.',
+  'recipe.err.corrupt': 'Corrupt link or JSON.',
+  'recipe.err.invalid': 'Invalid recipe.',
+  'recipe.err.unknown-op': 'The recipe uses an unknown operation: rejected.',
 
   'cat.encode': 'Encode / decode',
   'cat.hash': 'Hashing',

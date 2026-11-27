@@ -1,7 +1,10 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useAppStore } from './store.ts';
 import { translate, type Lang } from './i18n/index.ts';
 import { Workbench } from './components/Workbench.tsx';
+import { RecipeBoard } from './components/RecipeBoard.tsx';
+
+type Tab = 'transform' | 'compose';
 
 export default function App() {
   const { lang, setLang, theme, toggleTheme } = useAppStore();
@@ -11,6 +14,7 @@ export default function App() {
     document.documentElement.lang = lang;
   }, [theme, lang]);
 
+  const [tab, setTab] = useState<Tab>('transform');
   const t = (key: string) => translate(lang, key);
 
   return (
@@ -46,8 +50,34 @@ export default function App() {
         </div>
       </header>
 
-      <main className="wf-main">
-        <Workbench lang={lang} />
+      <nav className="wf-tabs" role="tablist" aria-label="WebFang">
+        {(['transform', 'compose'] as const).map((id) => (
+          <button
+            key={id}
+            type="button"
+            role="tab"
+            id={`wf-tab-${id}`}
+            aria-selected={tab === id}
+            aria-controls={`wf-panel-${id}`}
+            className={`wf-tab ${tab === id ? 'wf-tab--active' : ''}`}
+            onClick={() => setTab(id)}
+          >
+            {t(`tab.${id}`)}
+          </button>
+        ))}
+      </nav>
+
+      <main
+        className="wf-main"
+        id={`wf-panel-${tab}`}
+        role="tabpanel"
+        aria-labelledby={`wf-tab-${tab}`}
+      >
+        {tab === 'transform' ? (
+          <Workbench lang={lang} />
+        ) : (
+          <RecipeBoard lang={lang} />
+        )}
       </main>
 
       <footer className="wf-footer">

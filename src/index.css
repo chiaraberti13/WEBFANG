@@ -313,6 +313,100 @@ body {
   font-style: italic;
 }
 
+/* ---- Tabs ---- */
+.wf-tabs {
+  display: flex;
+  gap: 0.25rem;
+  border-bottom: 1px solid var(--wf-border);
+}
+
+.wf-tab {
+  background: transparent;
+  color: var(--wf-muted);
+  border: 1px solid transparent;
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
+  padding: 0.55rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.wf-tab--active {
+  color: var(--wf-fg);
+  background: var(--wf-surface);
+  border-color: var(--wf-border);
+}
+
+/* ---- Recipe board ---- */
+.wf-recipe {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.wf-recipe__toolbar {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.wf-recipe__spacer {
+  flex: 1;
+}
+
+.wf-recipe__notice {
+  margin: 0;
+  min-height: 1.2em;
+  font-size: 0.85rem;
+  color: var(--wf-ok);
+}
+
+.wf-recipe__steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.wf-step__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.wf-step__actions {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.wf-icon-button {
+  background: var(--wf-surface-2);
+  color: var(--wf-fg);
+  border: 1px solid var(--wf-border);
+  border-radius: 6px;
+  width: 2rem;
+  height: 2rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.wf-icon-button:hover:not(:disabled) {
+  border-color: var(--wf-amber);
+}
+
+.wf-icon-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.wf-recipe__final {
+  border-left: 4px solid var(--wf-amber);
+}
+
 /* ---- Footer ---- */
 .wf-footer {
   border-top: 1px solid var(--wf-border);

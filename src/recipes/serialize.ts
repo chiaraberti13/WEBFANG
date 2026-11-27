@@ -55,6 +55,29 @@ export function deserializeRecipe(encoded: string): DeserializeOutcome {
   return { ok: true, recipe: parsed.data };
 }
 
+/** Serializza la ricetta in JSON leggibile (export). */
+export function recipeToJson(recipe: Recipe): string {
+  return JSON.stringify(recipe, null, 2);
+}
+
+/** Valida e carica una ricetta da JSON (import), con allowlist delle operazioni. */
+export function recipeFromJson(input: string): DeserializeOutcome {
+  let raw: unknown;
+  try {
+    raw = JSON.parse(input);
+  } catch {
+    return { ok: false, reason: 'corrupt' };
+  }
+  const parsed = recipeSchema.safeParse(migrateRecipe(raw));
+  if (!parsed.success) return { ok: false, reason: 'invalid' };
+  for (const step of parsed.data.steps) {
+    if (!OPERATION_BY_ID.has(step.opId)) {
+      return { ok: false, reason: 'unknown-op' };
+    }
+  }
+  return { ok: true, recipe: parsed.data };
+}
+
 /** Estrae e valida una ricetta dal fragment `#…recipe=…`; null se assente. */
 export function readRecipeFromHash(hash: string): DeserializeOutcome | null {
   const clean = hash.startsWith('#') ? hash.slice(1) : hash;
