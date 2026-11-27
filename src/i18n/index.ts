@@ -73,6 +73,92 @@ const it: Catalog = {
   'defense.base64-decode.defense':
     'Valida e canonicalizza SEMPRE i dati decodificati prima di usarli (doppia codifica = bypass dei filtri). Applica allowlist e limiti di dimensione.',
 
+  'op.param.double': 'Doppia codifica (due passaggi)',
+  'op.param.spaced': 'Byte separati da spazio',
+
+  'op.url-encode.label': 'URL-encode',
+  'op.url-encode.description':
+    'Percent-encoding del testo (UTF-8); opzione doppia codifica.',
+  'op.url-decode.label': 'URL-decode',
+  'op.url-decode.description':
+    'Interpreta il percent-encoding; opzione doppia decodifica.',
+  'op.html-encode.label': 'HTML entities — codifica',
+  'op.html-encode.description':
+    'Escaping dei caratteri significativi in HTML (& < > " \').',
+  'op.html-decode.label': 'HTML entities — decodifica',
+  'op.html-decode.description': 'Risolve entità nominate e numeriche.',
+  'op.hex-encode.label': 'Hex — codifica',
+  'op.hex-encode.description':
+    'Rappresenta i byte in esadecimale; opzione byte spaziati.',
+  'op.hex-decode.label': 'Hex — decodifica',
+  'op.hex-decode.description':
+    'Converte esadecimale in byte; tollera spazi, richiede lunghezza pari.',
+  'op.sha-256.label': 'SHA-256',
+  'op.sha-256.description': 'Digest SHA-256 dei byte dell’input (hex).',
+
+  'defense.url-encode.what':
+    'Sostituisce i caratteri non sicuri in URL con %XX (UTF-8). La doppia codifica applica due passaggi.',
+  'defense.url-encode.where':
+    'Query string, path, parametri; la doppia codifica serve a capire i bypass quando reverse proxy e backend decodificano un numero diverso di volte.',
+  'defense.url-encode.notProve':
+    'Codificare non sanifica: un valore %XX è lo stesso dato, solo rappresentato diversamente.',
+  'defense.url-encode.defense':
+    'Decodifica una sola volta, in un punto definito, poi valida in forma canonica. Normalizza prima dei controlli di sicurezza per evitare bypass da doppio decode.',
+
+  'defense.url-decode.what':
+    'Converte %XX nei caratteri originali. La doppia decodifica applica due passaggi.',
+  'defense.url-decode.where':
+    'Ispezione di parametri, redirect e payload offuscati nelle URL.',
+  'defense.url-decode.notProve':
+    'Il valore decodificato resta input non attendibile.',
+  'defense.url-decode.defense':
+    'Canonicalizza e valida dopo UNA decodifica controllata; rifiuta input che richiedono decodifiche multiple inattese.',
+
+  'defense.html-encode.what':
+    'Trasforma & < > " \' nelle rispettive entità, neutralizzando la sintassi HTML.',
+  'defense.html-encode.where':
+    'Output encoding nel contesto HTML body/attributo: difesa primaria contro XSS riflesso e stored.',
+  'defense.html-encode.notProve':
+    'Non basta in ogni contesto: JS, URL e CSS richiedono encoding diversi; la CSP è una difesa aggiuntiva, non sostitutiva.',
+  'defense.html-encode.defense':
+    'Applica l’encoding contestuale nel punto di output (React, Blade/Twig, Go template); non costruire HTML per concatenazione di stringhe.',
+
+  'defense.html-decode.what':
+    'Converte entità (&amp;, &#39;, &#x41;) nei caratteri originali.',
+  'defense.html-decode.where':
+    'Capire payload codificati o confrontare il testo di un link con la sua destinazione.',
+  'defense.html-decode.notProve':
+    'Decodificare non implica che l’HTML sia sicuro da renderizzare.',
+  'defense.html-decode.defense':
+    'Non inserire mai HTML non fidato nel DOM; se serve, sanifica con DOMPurify e mostra come testo (textContent).',
+
+  'defense.hex-encode.what':
+    'Converte ogni byte in due cifre esadecimali. È una rappresentazione, non cifratura.',
+  'defense.hex-encode.where':
+    'Dump binari, confronto byte a byte, ispezione di hash e chiavi.',
+  'defense.hex-encode.notProve':
+    'Hex è reversibile: non offre alcuna riservatezza.',
+  'defense.hex-encode.defense':
+    'Non usare hex come protezione. Per i segreti usa cifratura e confronti a tempo costante.',
+
+  'defense.hex-decode.what':
+    'Interpreta coppie di cifre esadecimali come byte.',
+  'defense.hex-decode.where':
+    'Ricostruire dati binari da dump, payload o firme.',
+  'defense.hex-decode.notProve':
+    'I byte ottenuti restano input non attendibile.',
+  'defense.hex-decode.defense':
+    'Valida lunghezza e alfabeto; imponi limiti di dimensione prima di elaborare i byte.',
+
+  'defense.sha-256.what':
+    'Calcola un digest a 256 bit, deterministico e a senso unico, dei byte dell’input.',
+  'defense.sha-256.where':
+    'Integrità (confronto di digest), deduplica, fingerprint; non serve a cifrare.',
+  'defense.sha-256.notProve':
+    'Hashing non è cifratura né, da solo, sicurezza delle password: input uguali danno hash uguali.',
+  'defense.sha-256.defense':
+    'Per le password usa un KDF lento con sale (argon2/bcrypt/scrypt), non SHA grezzo. Confronta i digest a tempo costante.',
+
   // --- errori strutturati ---
   'err.DECODE_FAILED': 'Decodifica fallita: input non valido.',
   'err.ENCODE_FAILED': 'Codifica fallita.',
@@ -146,6 +232,90 @@ const en: Catalog = {
     'Decoding a value does not make it trusted: it is still untrusted input.',
   'defense.base64-decode.defense':
     'ALWAYS validate and canonicalize decoded data before use (double-encoding = filter bypass). Apply allowlists and size limits.',
+
+  'op.param.double': 'Double encoding (two passes)',
+  'op.param.spaced': 'Bytes separated by spaces',
+
+  'op.url-encode.label': 'URL-encode',
+  'op.url-encode.description':
+    'Percent-encodes text (UTF-8); optional double encoding.',
+  'op.url-decode.label': 'URL-decode',
+  'op.url-decode.description':
+    'Reads percent-encoding; optional double decoding.',
+  'op.html-encode.label': 'HTML entities — encode',
+  'op.html-encode.description':
+    'Escapes the characters that are significant in HTML (& < > " \').',
+  'op.html-decode.label': 'HTML entities — decode',
+  'op.html-decode.description': 'Resolves named and numeric entities.',
+  'op.hex-encode.label': 'Hex — encode',
+  'op.hex-encode.description':
+    'Represents bytes in hexadecimal; optional spaced bytes.',
+  'op.hex-decode.label': 'Hex — decode',
+  'op.hex-decode.description':
+    'Converts hexadecimal to bytes; tolerates spaces, requires even length.',
+  'op.sha-256.label': 'SHA-256',
+  'op.sha-256.description': 'SHA-256 digest of the input bytes (hex).',
+
+  'defense.url-encode.what':
+    'Replaces URL-unsafe characters with %XX (UTF-8). Double encoding applies two passes.',
+  'defense.url-encode.where':
+    'Query strings, paths, parameters; double encoding helps understand bypasses when a reverse proxy and the backend decode a different number of times.',
+  'defense.url-encode.notProve':
+    'Encoding does not sanitize: a %XX value is the same data, only represented differently.',
+  'defense.url-encode.defense':
+    'Decode exactly once, at a defined point, then validate the canonical form. Normalize before security checks to avoid double-decode bypasses.',
+
+  'defense.url-decode.what':
+    'Converts %XX back to the original characters. Double decoding applies two passes.',
+  'defense.url-decode.where':
+    'Inspecting parameters, redirects and obfuscated payloads in URLs.',
+  'defense.url-decode.notProve': 'The decoded value is still untrusted input.',
+  'defense.url-decode.defense':
+    'Canonicalize and validate after ONE controlled decode; reject input that needs unexpected multiple decodes.',
+
+  'defense.html-encode.what':
+    'Turns & < > " \' into their entities, neutralizing HTML syntax.',
+  'defense.html-encode.where':
+    'Output encoding in the HTML body/attribute context: the primary defense against reflected and stored XSS.',
+  'defense.html-encode.notProve':
+    'It is not enough in every context: JS, URL and CSS need different encodings; CSP is an additional defense, not a substitute.',
+  'defense.html-encode.defense':
+    'Apply contextual encoding at the output point (React, Blade/Twig, Go templates); never build HTML by string concatenation.',
+
+  'defense.html-decode.what':
+    'Converts entities (&amp;, &#39;, &#x41;) back to the original characters.',
+  'defense.html-decode.where':
+    'Understanding encoded payloads or comparing a link’s text with its destination.',
+  'defense.html-decode.notProve':
+    'Decoding does not imply the HTML is safe to render.',
+  'defense.html-decode.defense':
+    'Never insert untrusted HTML into the DOM; if required, sanitize with DOMPurify and show it as text (textContent).',
+
+  'defense.hex-encode.what':
+    'Converts each byte into two hexadecimal digits. A representation, not encryption.',
+  'defense.hex-encode.where':
+    'Binary dumps, byte-by-byte comparison, inspecting hashes and keys.',
+  'defense.hex-encode.notProve':
+    'Hex is reversible: it provides no confidentiality.',
+  'defense.hex-encode.defense':
+    'Never use hex as protection. For secrets, use encryption and constant-time comparison.',
+
+  'defense.hex-decode.what': 'Reads pairs of hexadecimal digits as bytes.',
+  'defense.hex-decode.where':
+    'Rebuilding binary data from dumps, payloads or signatures.',
+  'defense.hex-decode.notProve':
+    'The resulting bytes are still untrusted input.',
+  'defense.hex-decode.defense':
+    'Validate length and alphabet; enforce size limits before processing the bytes.',
+
+  'defense.sha-256.what':
+    'Computes a deterministic, one-way 256-bit digest of the input bytes.',
+  'defense.sha-256.where':
+    'Integrity (digest comparison), deduplication, fingerprinting; not for encryption.',
+  'defense.sha-256.notProve':
+    'Hashing is not encryption, nor on its own password security: equal inputs give equal hashes.',
+  'defense.sha-256.defense':
+    'For passwords use a slow, salted KDF (argon2/bcrypt/scrypt), not raw SHA. Compare digests in constant time.',
 
   'err.DECODE_FAILED': 'Decoding failed: invalid input.',
   'err.ENCODE_FAILED': 'Encoding failed.',
