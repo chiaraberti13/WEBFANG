@@ -1,14 +1,28 @@
 import { useEffect, useState } from 'react';
 import { useAppStore } from './store.ts';
 import { translate, type Lang } from './i18n/index.ts';
+import { XSS_CONTEXTS } from './content/xss.ts';
 import { Workbench } from './components/Workbench.tsx';
 import { RecipeBoard } from './components/RecipeBoard.tsx';
 import { XssExplorer } from './components/XssExplorer.tsx';
+import { Wizard } from './components/Wizard.tsx';
+import { Onboarding } from './components/Onboarding.tsx';
 
 type Tab = 'transform' | 'compose' | 'context';
 
+const FIRST_CONTEXT_ID = XSS_CONTEXTS[0]?.id ?? '';
+
 export default function App() {
-  const { lang, setLang, theme, toggleTheme } = useAppStore();
+  const {
+    lang,
+    setLang,
+    theme,
+    toggleTheme,
+    mode,
+    setMode,
+    onboardingSeen,
+    dismissOnboarding,
+  } = useAppStore();
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
@@ -16,7 +30,22 @@ export default function App() {
   }, [theme, lang]);
 
   const [tab, setTab] = useState<Tab>('transform');
+  const [wizardOpen, setWizardOpen] = useState(false);
+  const [onboardingOpen, setOnboardingOpen] = useState(!onboardingSeen);
+  const [xssContextId, setXssContextId] = useState(FIRST_CONTEXT_ID);
+
   const t = (key: string) => translate(lang, key);
+
+  function pickFromWizard(contextId: string) {
+    setXssContextId(contextId);
+    setTab('context');
+    setWizardOpen(false);
+  }
+
+  function finishOnboarding() {
+    setOnboardingOpen(false);
+    dismissOnboarding();
+  }
 
   return (
     <div className="wf-app">
@@ -28,6 +57,38 @@ export default function App() {
           <p className="wf-brand__tagline">{t('app.tagline')}</p>
         </div>
         <div className="wf-header__controls">
+          <div
+            className="wf-segmented"
+            role="group"
+            aria-label={t('mode.label')}
+          >
+            {(['guided', 'expert'] as const).map((m) => (
+              <button
+                key={m}
+                type="button"
+                className={`wf-button ${mode === m ? 'wf-button--active' : ''}`}
+                aria-pressed={mode === m}
+                onClick={() => setMode(m)}
+              >
+                {t(`mode.${m}`)}
+              </button>
+            ))}
+          </div>
+          <button
+            type="button"
+            className="wf-button"
+            onClick={() => setWizardOpen(true)}
+          >
+            {t('wizard.open')}
+          </button>
+          <button
+            type="button"
+            className="wf-button"
+            onClick={() => setOnboardingOpen(true)}
+            aria-label={t('help.open')}
+          >
+            ?
+          </button>
           <label className="wf-field">
             <span className="wf-visually-hidden">{t('lang.switch')}</span>
             <select
@@ -68,6 +129,8 @@ export default function App() {
         ))}
       </nav>
 
+      {mode === 'guided' && <p className="wf-guide">{t(`guide.${tab}`)}</p>}
+
       <main
         className="wf-main"
         id={`wf-panel-${tab}`}
@@ -76,7 +139,13 @@ export default function App() {
       >
         {tab === 'transform' && <Workbench lang={lang} />}
         {tab === 'compose' && <RecipeBoard lang={lang} />}
-        {tab === 'context' && <XssExplorer lang={lang} />}
+        {tab === 'context' && (
+          <XssExplorer
+            lang={lang}
+            contextId={xssContextId}
+            onContextChange={setXssContextId}
+          />
+        )}
       </main>
 
       <footer className="wf-footer">
@@ -92,6 +161,15 @@ export default function App() {
           </a>
         </p>
       </footer>
+
+      {wizardOpen && (
+        <Wizard
+          lang={lang}
+          onPick={pickFromWizard}
+          onClose={() => setWizardOpen(false)}
+        />
+      )}
+      {onboardingOpen && <Onboarding lang={lang} onDone={finishOnboarding} />}
     </div>
   );
 }

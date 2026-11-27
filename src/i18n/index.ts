@@ -66,6 +66,37 @@ const it: Catalog = {
   'xss.prereqLabel': 'Prerequisiti',
   'xss.copy': 'Copia',
 
+  // --- modalità, wizard, onboarding, guide ---
+  'mode.label': 'Modalità',
+  'mode.guided': 'Guidata',
+  'mode.expert': 'Esperto',
+  'help.open': 'Aiuto',
+  'wizard.open': 'Non so cosa mi serve',
+  'wizard.title': 'Non so cosa mi serve',
+  'wizard.q1': 'Dove viene riflesso il tuo input?',
+  'wizard.hint':
+    'Scegli il contesto: ti porto agli esempi inerti e alla difesa giusta.',
+  'wizard.close': 'Chiudi',
+  'onboarding.title.1': 'Benvenuta in WebFang',
+  'onboarding.body.1':
+    'Trasforma una stringa e, per ogni passaggio, vedi cosa fa, dove è pertinente, cosa non dimostra e come ci si difende.',
+  'onboarding.title.2': 'Componi e condividi',
+  'onboarding.body.2':
+    'Concatena più operazioni in una ricetta, con risultati intermedi e undo/redo. Condividi via link: solo operazioni e parametri, mai input o segreti.',
+  'onboarding.title.3': 'Privacy e sicurezza',
+  'onboarding.body.3':
+    'Tutto gira nel browser: input e chiavi non lasciano il dispositivo. I payload sono inerti e didattici: non provano una vulnerabilità.',
+  'onboarding.step': '{n} / {total}',
+  'onboarding.next': 'Avanti',
+  'onboarding.back': 'Indietro',
+  'onboarding.done': 'Inizia',
+  'onboarding.skip': 'Salta',
+  'guide.transform':
+    'Scegli un’operazione e guarda output e difesa cambiare in tempo reale.',
+  'guide.compose':
+    'Aggiungi passaggi per concatenare le trasformazioni; ognuno mostra il suo risultato.',
+  'guide.context': 'Non sai da dove partire? Usa “Non so cosa mi serve”.',
+
   'xss.html-body.label': 'HTML body',
   'xss.html-body.description':
     'L’input finisce tra i tag, nel corpo della pagina.',
@@ -330,6 +361,36 @@ const en: Catalog = {
   'xss.payloads': 'Didactic payloads (inert)',
   'xss.prereqLabel': 'Prerequisites',
   'xss.copy': 'Copy',
+
+  'mode.label': 'Mode',
+  'mode.guided': 'Guided',
+  'mode.expert': 'Expert',
+  'help.open': 'Help',
+  'wizard.open': 'I don’t know what I need',
+  'wizard.title': 'I don’t know what I need',
+  'wizard.q1': 'Where is your input reflected?',
+  'wizard.hint':
+    'Pick the context: I’ll take you to the inert examples and the right defense.',
+  'wizard.close': 'Close',
+  'onboarding.title.1': 'Welcome to WebFang',
+  'onboarding.body.1':
+    'Transform a string and, for each step, see what it does, where it is relevant, what it does not prove and how to defend.',
+  'onboarding.title.2': 'Compose and share',
+  'onboarding.body.2':
+    'Chain operations into a recipe, with intermediate results and undo/redo. Share via link: only operations and parameters, never input or secrets.',
+  'onboarding.title.3': 'Privacy and security',
+  'onboarding.body.3':
+    'Everything runs in the browser: input and keys never leave the device. Payloads are inert and didactic: they do not prove a vulnerability.',
+  'onboarding.step': '{n} / {total}',
+  'onboarding.next': 'Next',
+  'onboarding.back': 'Back',
+  'onboarding.done': 'Start',
+  'onboarding.skip': 'Skip',
+  'guide.transform':
+    'Pick an operation and watch the output and defense change in real time.',
+  'guide.compose':
+    'Add steps to chain transformations; each one shows its own result.',
+  'guide.context': 'Not sure where to start? Use “I don’t know what I need”.',
 
   'xss.html-body.label': 'HTML body',
   'xss.html-body.description':

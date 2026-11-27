@@ -3,20 +3,24 @@ import { XSS_BY_ID, XSS_CONTEXTS } from '../content/xss.ts';
 import { translate, type Lang } from '../i18n/index.ts';
 import { DefensePanel } from './DefensePanel.tsx';
 
-const FIRST_CONTEXT_ID = XSS_CONTEXTS[0]?.id ?? '';
-
 interface XssExplorerProps {
   lang: Lang;
+  contextId: string;
+  onContextChange: (id: string) => void;
 }
 
 /**
  * Esploratore dei contesti XSS: scelto il contesto, mostra prerequisiti, payload
  * inerti (resi come TESTO, mai eseguiti né inseriti come HTML) e la difesa
- * contestuale nel pannello Difesa.
+ * contestuale nel pannello Difesa. Il contesto è controllato dall'esterno, così il
+ * wizard può impostarlo.
  */
-export function XssExplorer({ lang }: XssExplorerProps) {
+export function XssExplorer({
+  lang,
+  contextId,
+  onContextChange,
+}: XssExplorerProps) {
   const t = (key: string) => translate(lang, key);
-  const [contextId, setContextId] = useState(FIRST_CONTEXT_ID);
   const [copied, setCopied] = useState<number | null>(null);
   const context = XSS_BY_ID.get(contextId);
 
@@ -42,7 +46,7 @@ export function XssExplorer({ lang }: XssExplorerProps) {
           id="wf-xss-context"
           className="wf-select"
           value={contextId}
-          onChange={(event) => setContextId(event.target.value)}
+          onChange={(event) => onContextChange(event.target.value)}
         >
           {XSS_CONTEXTS.map((entry) => (
             <option key={entry.id} value={entry.id}>

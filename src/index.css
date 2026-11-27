@@ -443,6 +443,71 @@ body {
   flex: 1;
 }
 
+/* ---- Mode / guide / modal ---- */
+.wf-segmented {
+  display: inline-flex;
+  gap: 2px;
+}
+
+.wf-button--active {
+  border-color: var(--wf-amber);
+  color: var(--wf-amber);
+}
+
+.wf-guide {
+  margin: 0;
+  padding: 0.6rem 0.8rem;
+  background: var(--wf-surface);
+  border: 1px dashed var(--wf-border);
+  border-radius: 8px;
+  color: var(--wf-muted);
+  font-size: 0.9rem;
+}
+
+.wf-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 10;
+}
+
+.wf-modal__card {
+  background: var(--wf-surface);
+  border: 1px solid var(--wf-border);
+  border-radius: var(--wf-radius);
+  padding: 1.5rem;
+  max-width: 30rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.wf-modal__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.wf-wizard__options {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.wf-wizard__options .wf-button {
+  width: 100%;
+  text-align: left;
+}
+
 /* ---- Footer ---- */
 .wf-footer {
   border-top: 1px solid var(--wf-border);
