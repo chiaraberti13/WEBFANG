@@ -508,6 +508,44 @@ body {
   text-align: left;
 }
 
+/* ---- Report (analyze) ---- */
+.wf-report__list {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.wf-report__row {
+  display: grid;
+  grid-template-columns: minmax(6rem, 13rem) 1fr;
+  gap: 0.5rem;
+  padding: 0.3rem 0.45rem;
+  border-radius: 6px;
+}
+
+.wf-report__row--warn {
+  background: rgba(247, 185, 85, 0.12);
+}
+
+.wf-report__row--danger {
+  background: rgba(255, 138, 122, 0.16);
+}
+
+.wf-report__key {
+  margin: 0;
+  font-family: var(--wf-mono);
+  font-size: 0.85rem;
+  color: var(--wf-bronze);
+}
+
+.wf-report__value {
+  margin: 0;
+  font-family: var(--wf-mono);
+  font-size: 0.85rem;
+  word-break: break-word;
+}
+
 /* ---- Footer ---- */
 .wf-footer {
   border-top: 1px solid var(--wf-border);

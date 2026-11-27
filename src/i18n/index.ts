@@ -294,6 +294,18 @@ const it: Catalog = {
   'defense.sha-256.defense':
     'Per le password usa un KDF lento con sale (argon2/bcrypt/scrypt), non SHA grezzo. Confronta i digest a tempo costante.',
 
+  'op.jwt-inspect.label': 'JWT — ispeziona',
+  'op.jwt-inspect.description':
+    'Decodifica header e claim di un JWT (NON verifica la firma).',
+  'defense.jwt-inspect.what':
+    'Decodifica le parti Base64URL del token e mostra header e claim come report. Non verifica nulla.',
+  'defense.jwt-inspect.where':
+    'Ispezione di token di sessione/accesso: capire alg, scadenza, issuer, audience.',
+  'defense.jwt-inspect.notProve':
+    'Decodificare NON è verificare: un token leggibile può avere firma non valida, essere scaduto o usare alg:none.',
+  'defense.jwt-inspect.defense':
+    'Verifica la firma lato server con una allowlist di algoritmi (mai “none”), poi valida exp/nbf/iss/aud. Non fidarti dei claim prima della verifica.',
+
   // --- errori strutturati ---
   'err.DECODE_FAILED': 'Decodifica fallita: input non valido.',
   'err.ENCODE_FAILED': 'Codifica fallita.',
@@ -580,6 +592,18 @@ const en: Catalog = {
     'Hashing is not encryption, nor on its own password security: equal inputs give equal hashes.',
   'defense.sha-256.defense':
     'For passwords use a slow, salted KDF (argon2/bcrypt/scrypt), not raw SHA. Compare digests in constant time.',
+
+  'op.jwt-inspect.label': 'JWT — inspect',
+  'op.jwt-inspect.description':
+    'Decodes a JWT header and claims (does NOT verify the signature).',
+  'defense.jwt-inspect.what':
+    'Decodes the Base64URL parts of the token and shows header and claims as a report. It verifies nothing.',
+  'defense.jwt-inspect.where':
+    'Inspecting session/access tokens: understanding alg, expiry, issuer, audience.',
+  'defense.jwt-inspect.notProve':
+    'Decoding is NOT verifying: a readable token may have an invalid signature, be expired or use alg:none.',
+  'defense.jwt-inspect.defense':
+    'Verify the signature server-side with an algorithm allowlist (never “none”), then validate exp/nbf/iss/aud. Do not trust claims before verification.',
 
   'err.DECODE_FAILED': 'Decoding failed: invalid input.',
   'err.ENCODE_FAILED': 'Encoding failed.',

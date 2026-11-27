@@ -6,6 +6,7 @@ import { translateError } from '../content/format.ts';
 import { translate, type Lang } from '../i18n/index.ts';
 import { useOperation } from './useOperation.ts';
 import { DefensePanel } from './DefensePanel.tsx';
+import { ReportView } from './ReportView.tsx';
 
 const FIRST_OP_ID = OPERATIONS[0]?.id ?? '';
 
@@ -43,6 +44,7 @@ export function Workbench({ lang }: WorkbenchProps) {
     setParams((prev) => ({ ...prev, [name]: value }));
   }
 
+  const report = result?.kind === 'report' ? result.report : null;
   const display = result ? formatResult(result) : null;
 
   async function copyOutput() {
@@ -135,6 +137,8 @@ export function Workbench({ lang }: WorkbenchProps) {
               </span>
             ) : input === '' ? (
               <span className="wf-output__hint">{t('app.emptyInput')}</span>
+            ) : report ? (
+              <ReportView report={report} />
             ) : display ? (
               <>
                 <pre className="wf-output__value">{display.text}</pre>

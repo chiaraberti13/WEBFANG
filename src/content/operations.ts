@@ -3,6 +3,7 @@ import { urlDecodeOp, urlEncodeOp } from '../lib/url.ts';
 import { htmlDecodeOp, htmlEncodeOp } from '../lib/html-entities.ts';
 import { hexDecodeOp, hexEncodeOp } from '../lib/hex.ts';
 import { sha256Op } from '../lib/hash.ts';
+import { jwtInspectOp } from '../lib/jwt.ts';
 import { asAnyOperation, type OperationMeta } from './types.ts';
 
 const urlSafeParam = {
@@ -94,6 +95,14 @@ export const OPERATIONS: readonly OperationMeta[] = [
     op: asAnyOperation(sha256Op),
     booleanParams: [],
     defense: { cwe: 'CWE-916', owasp: 'A02:2021' },
+  },
+  {
+    id: 'jwt-inspect',
+    category: 'analyze',
+    i18nBase: 'jwt-inspect',
+    op: asAnyOperation(jwtInspectOp),
+    booleanParams: [],
+    defense: { cwe: 'CWE-347', owasp: 'A02:2021' },
   },
 ];
 

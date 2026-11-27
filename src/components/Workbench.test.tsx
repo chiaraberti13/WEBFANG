@@ -37,6 +37,18 @@ describe('Workbench', () => {
     expect(alert.textContent ?? '').toMatch(/Decodifica fallita/);
   });
 
+  it('renders a report for an analyze operation (JWT inspect)', async () => {
+    render(<Workbench lang="it" />);
+    selectOperation('jwt-inspect');
+    setInput(
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9' +
+        '.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ' +
+        '.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
+    );
+    expect(await screen.findByText('HS256')).toBeInTheDocument();
+    expect(screen.getByText(/John Doe/)).toBeInTheDocument();
+  });
+
   it('shows the defense panel next to the operation', () => {
     render(<Workbench lang="it" />);
     expect(
