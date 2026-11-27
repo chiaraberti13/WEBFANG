@@ -1,23 +1,23 @@
 import { translate, type Lang } from '../i18n/index.ts';
-import type { OperationMeta } from '../content/types.ts';
+import type { DefenseSubject } from '../content/types.ts';
 
-/** Le quattro domande sempre presenti accanto a ogni trasformazione. */
+/** Le quattro domande sempre presenti accanto a ogni trasformazione/contesto. */
 const FIELDS = ['what', 'where', 'notProve', 'defense'] as const;
 
 interface DefensePanelProps {
-  meta: OperationMeta;
+  subject: DefenseSubject;
   lang: Lang;
 }
 
 /**
- * Il cuore del prodotto: per ogni operazione mostra cosa fa, dove è pertinente,
- * cosa NON dimostra e come difendersi, con i riferimenti CWE/OWASP. È sempre
- * visibile accanto al passaggio selezionato, non in una scheda nascosta.
+ * Il cuore del prodotto: per ogni operazione o contesto mostra cosa fa, dove è
+ * pertinente, cosa NON dimostra e come difendersi, con i riferimenti CWE/OWASP.
+ * È sempre visibile accanto al passaggio selezionato, non in una scheda nascosta.
  */
-export function DefensePanel({ meta, lang }: DefensePanelProps) {
+export function DefensePanel({ subject, lang }: DefensePanelProps) {
   const t = (key: string) => translate(lang, key);
-  const refs = [meta.defense.cwe, meta.defense.owasp].filter(Boolean);
-  const titleId = `defense-${meta.id}`;
+  const refs = [subject.defense.cwe, subject.defense.owasp].filter(Boolean);
+  const titleId = `defense-${subject.id}`;
 
   return (
     <section className="wf-defense" aria-labelledby={titleId}>
@@ -31,7 +31,7 @@ export function DefensePanel({ meta, lang }: DefensePanelProps) {
             className={`wf-defense__part wf-defense__part--${field}`}
           >
             <dt>{t(`defense.${field}`)}</dt>
-            <dd>{t(`defense.${meta.i18nBase}.${field}`)}</dd>
+            <dd>{t(`defense.${subject.i18nBase}.${field}`)}</dd>
           </div>
         ))}
       </dl>

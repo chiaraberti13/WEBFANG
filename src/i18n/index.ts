@@ -56,6 +56,83 @@ const it: Catalog = {
   'recipe.err.unknown-op':
     'La ricetta usa un’operazione sconosciuta: rifiutata.',
 
+  // --- flusso "contesto XSS" ---
+  'tab.context': 'Contesto XSS',
+  'xss.title': 'Capire un contesto XSS',
+  'xss.intro':
+    'Scegli dove viene riflesso il tuo input: WebFang mostra payload inerti pertinenti, i prerequisiti e la difesa contestuale.',
+  'xss.pickContext': 'Contesto di riflessione',
+  'xss.payloads': 'Payload didattici (inerti)',
+  'xss.prereqLabel': 'Prerequisiti',
+  'xss.copy': 'Copia',
+
+  'xss.html-body.label': 'HTML body',
+  'xss.html-body.description':
+    'L’input finisce tra i tag, nel corpo della pagina.',
+  'xss.html-body.prereq':
+    'Output non codificato come HTML e nessuna CSP che blocchi gli script inline.',
+  'defense.xss.html-body.what':
+    'Il browser interpreta l’input come markup: un <script> o un gestore di eventi viene eseguito.',
+  'defense.xss.html-body.where':
+    'Valori riflessi nel corpo HTML senza escaping (commenti, messaggi, ricerche).',
+  'defense.xss.html-body.notProve':
+    'Il payload è inerte (alert del dominio): dimostra il contesto, non un impatto reale.',
+  'defense.xss.html-body.defense':
+    'Encoding contestuale HTML nel punto di output (React/Blade/Twig/Go). La CSP è difesa aggiuntiva, non sostitutiva dell’encoding.',
+
+  'xss.attribute.label': 'Attributo HTML',
+  'xss.attribute.description':
+    'L’input finisce nel valore di un attributo (es. value="…").',
+  'xss.attribute.prereq':
+    'Attributo senza virgolette, o input che può chiuderle.',
+  'defense.xss.attribute.what':
+    'Uscendo dal valore (con " o >) si inietta un nuovo attributo/handler o un tag.',
+  'defense.xss.attribute.where':
+    'Valori in attributi costruiti da input: value, title, alt, href.',
+  'defense.xss.attribute.notProve':
+    'Inerte: mostra come si rompe il contesto, non un exploit.',
+  'defense.xss.attribute.defense':
+    'Quota sempre gli attributi e applica l’attribute-encoding; non costruire attributi per concatenazione.',
+
+  'xss.js-string.label': 'Stringa JavaScript',
+  'xss.js-string.description':
+    'L’input finisce dentro una stringa in uno <script> inline.',
+  'xss.js-string.prereq':
+    'Input inserito in JS senza escaping, con possibilità di chiudere la stringa.',
+  'defense.xss.js-string.what':
+    'Chiudendo la stringa (con \' o ") e aggiungendo ; si esegue codice JS arbitrario.',
+  'defense.xss.js-string.where':
+    'Template che interpolano input dentro JavaScript inline.',
+  'defense.xss.js-string.notProve':
+    'Inerte: evidenzia il contesto JS, non un impatto.',
+  'defense.xss.js-string.defense':
+    'Non costruire JS da input: passa i dati via JSON.stringify o data-attribute e leggili dal DOM; CSP senza unsafe-inline.',
+
+  'xss.url.label': 'URL / href',
+  'xss.url.description': 'L’input diventa un URL (es. href, src).',
+  'xss.url.prereq': 'Schema dell’URL non validato (accetta javascript:).',
+  'defense.xss.url.what':
+    'Uno schema javascript: nell’href esegue codice al click.',
+  'defense.xss.url.where': 'Link e redirect costruiti da input.',
+  'defense.xss.url.notProve':
+    'Inerte: mostra lo schema pericoloso, non un attacco.',
+  'defense.xss.url.defense':
+    'Allowlist degli schemi (http/https/mailto); rifiuta javascript:/data: dove non servono; valida e normalizza l’URL.',
+
+  'xss.svg.label': 'SVG',
+  'xss.svg.description':
+    'L’input finisce in un contesto SVG (inline o caricato).',
+  'xss.svg.prereq':
+    'SVG reso inline o non sanificato, con handler di eventi ammessi.',
+  'defense.xss.svg.what':
+    'Gli elementi SVG eseguono JS via handler (onload) anche senza <script>.',
+  'defense.xss.svg.where':
+    'Upload/anteprima di SVG, icone o grafici costruiti da input.',
+  'defense.xss.svg.notProve':
+    'Inerte: dimostra il vettore SVG, non un impatto.',
+  'defense.xss.svg.defense':
+    'Sanifica l’SVG con DOMPurify (profilo SVG) rimuovendo gli handler; servilo come immagine, non inline nel DOM.',
+
   // --- categorie ---
   'cat.encode': 'Codifica / decodifica',
   'cat.hash': 'Hashing',
@@ -244,6 +321,80 @@ const en: Catalog = {
   'recipe.err.corrupt': 'Corrupt link or JSON.',
   'recipe.err.invalid': 'Invalid recipe.',
   'recipe.err.unknown-op': 'The recipe uses an unknown operation: rejected.',
+
+  'tab.context': 'XSS context',
+  'xss.title': 'Understand an XSS context',
+  'xss.intro':
+    'Choose where your input is reflected: WebFang shows pertinent inert payloads, the prerequisites and the contextual defense.',
+  'xss.pickContext': 'Reflection context',
+  'xss.payloads': 'Didactic payloads (inert)',
+  'xss.prereqLabel': 'Prerequisites',
+  'xss.copy': 'Copy',
+
+  'xss.html-body.label': 'HTML body',
+  'xss.html-body.description':
+    'The input ends up between tags, in the page body.',
+  'xss.html-body.prereq':
+    'Output not encoded as HTML and no CSP blocking inline scripts.',
+  'defense.xss.html-body.what':
+    'The browser interprets the input as markup: a <script> or an event handler runs.',
+  'defense.xss.html-body.where':
+    'Values reflected in the HTML body without escaping (comments, messages, searches).',
+  'defense.xss.html-body.notProve':
+    'The payload is inert (alerts the domain): it shows the context, not real impact.',
+  'defense.xss.html-body.defense':
+    'Contextual HTML encoding at the output point (React/Blade/Twig/Go). CSP is an additional defense, not a substitute for encoding.',
+
+  'xss.attribute.label': 'HTML attribute',
+  'xss.attribute.description':
+    'The input ends up in an attribute value (e.g. value="…").',
+  'xss.attribute.prereq':
+    'Unquoted attribute, or input that can close the quotes.',
+  'defense.xss.attribute.what':
+    'Breaking out of the value (with " or >) injects a new attribute/handler or a tag.',
+  'defense.xss.attribute.where':
+    'Attribute values built from input: value, title, alt, href.',
+  'defense.xss.attribute.notProve':
+    'Inert: it shows how the context breaks, not an exploit.',
+  'defense.xss.attribute.defense':
+    'Always quote attributes and apply attribute-encoding; never build attributes by concatenation.',
+
+  'xss.js-string.label': 'JavaScript string',
+  'xss.js-string.description':
+    'The input ends up inside a string in an inline <script>.',
+  'xss.js-string.prereq':
+    'Input placed in JS without escaping, with the ability to close the string.',
+  'defense.xss.js-string.what':
+    'Closing the string (with \' or ") and adding ; runs arbitrary JS.',
+  'defense.xss.js-string.where':
+    'Templates that interpolate input into inline JavaScript.',
+  'defense.xss.js-string.notProve':
+    'Inert: it highlights the JS context, not impact.',
+  'defense.xss.js-string.defense':
+    'Do not build JS from input: pass data via JSON.stringify or a data attribute and read it from the DOM; CSP without unsafe-inline.',
+
+  'xss.url.label': 'URL / href',
+  'xss.url.description': 'The input becomes a URL (e.g. href, src).',
+  'xss.url.prereq': 'URL scheme not validated (accepts javascript:).',
+  'defense.xss.url.what': 'A javascript: scheme in href runs code on click.',
+  'defense.xss.url.where': 'Links and redirects built from input.',
+  'defense.xss.url.notProve':
+    'Inert: it shows the dangerous scheme, not an attack.',
+  'defense.xss.url.defense':
+    'Allowlist schemes (http/https/mailto); reject javascript:/data: where not needed; validate and normalize the URL.',
+
+  'xss.svg.label': 'SVG',
+  'xss.svg.description':
+    'The input ends up in an SVG context (inline or loaded).',
+  'xss.svg.prereq':
+    'SVG rendered inline or unsanitized, with event handlers allowed.',
+  'defense.xss.svg.what':
+    'SVG elements run JS via handlers (onload) even without <script>.',
+  'defense.xss.svg.where':
+    'Uploading/previewing SVG, icons or charts built from input.',
+  'defense.xss.svg.notProve': 'Inert: it shows the SVG vector, not impact.',
+  'defense.xss.svg.defense':
+    'Sanitize the SVG with DOMPurify (SVG profile) removing handlers; serve it as an image, not inline in the DOM.',
 
   'cat.encode': 'Encode / decode',
   'cat.hash': 'Hashing',

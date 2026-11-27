@@ -407,6 +407,42 @@ body {
   border-left: 4px solid var(--wf-amber);
 }
 
+/* ---- XSS explorer ---- */
+.wf-xss {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.wf-xss__intro {
+  margin: 0;
+  color: var(--wf-muted);
+}
+
+.wf-xss__payloads {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.wf-xss__payload {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: space-between;
+  background: var(--wf-bg);
+  border: 1px solid var(--wf-border);
+  border-radius: 8px;
+  padding: 0.5rem 0.6rem;
+}
+
+.wf-xss__payload code {
+  flex: 1;
+}
+
 /* ---- Footer ---- */
 .wf-footer {
   border-top: 1px solid var(--wf-border);

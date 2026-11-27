@@ -293,7 +293,7 @@ export function RecipeBoard({ lang }: RecipeBoardProps) {
         </section>
       )}
 
-      {lastMeta && <DefensePanel meta={lastMeta} lang={lang} />}
+      {lastMeta && <DefensePanel subject={lastMeta} lang={lang} />}
     </div>
   );
 }

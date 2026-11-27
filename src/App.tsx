@@ -3,8 +3,9 @@ import { useAppStore } from './store.ts';
 import { translate, type Lang } from './i18n/index.ts';
 import { Workbench } from './components/Workbench.tsx';
 import { RecipeBoard } from './components/RecipeBoard.tsx';
+import { XssExplorer } from './components/XssExplorer.tsx';
 
-type Tab = 'transform' | 'compose';
+type Tab = 'transform' | 'compose' | 'context';
 
 export default function App() {
   const { lang, setLang, theme, toggleTheme } = useAppStore();
@@ -51,7 +52,7 @@ export default function App() {
       </header>
 
       <nav className="wf-tabs" role="tablist" aria-label="WebFang">
-        {(['transform', 'compose'] as const).map((id) => (
+        {(['transform', 'compose', 'context'] as const).map((id) => (
           <button
             key={id}
             type="button"
@@ -73,11 +74,9 @@ export default function App() {
         role="tabpanel"
         aria-labelledby={`wf-tab-${tab}`}
       >
-        {tab === 'transform' ? (
-          <Workbench lang={lang} />
-        ) : (
-          <RecipeBoard lang={lang} />
-        )}
+        {tab === 'transform' && <Workbench lang={lang} />}
+        {tab === 'compose' && <RecipeBoard lang={lang} />}
+        {tab === 'context' && <XssExplorer lang={lang} />}
       </main>
 
       <footer className="wf-footer">

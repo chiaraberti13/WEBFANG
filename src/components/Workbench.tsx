@@ -149,7 +149,7 @@ export function Workbench({ lang }: WorkbenchProps) {
       </div>
 
       {/* Difesa: sempre accanto al passaggio selezionato */}
-      {meta && <DefensePanel meta={meta} lang={lang} />}
+      {meta && <DefensePanel subject={meta} lang={lang} />}
     </div>
   );
 }

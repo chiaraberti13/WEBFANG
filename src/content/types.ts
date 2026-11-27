@@ -19,6 +19,16 @@ export interface DefenseRef {
   owasp?: string;
 }
 
+/**
+ * Qualunque cosa abbia un pannello Difesa: un'operazione o un contesto XSS.
+ * Chiavi i18n attese: `defense.<i18nBase>.{what,where,notProve,defense}`.
+ */
+export interface DefenseSubject {
+  id: string;
+  i18nBase: string;
+  defense: DefenseRef;
+}
+
 /** Parametro booleano configurabile dall'utente (es. Base64 URL-safe). */
 export interface BooleanParam {
   name: string;

@@ -8,7 +8,7 @@ const meta = OPERATION_BY_ID.get('base64-encode')!;
 
 describe('DefensePanel', () => {
   it('renders the four defense answers with their labels', () => {
-    render(<DefensePanel meta={meta} lang="it" />);
+    render(<DefensePanel subject={meta} lang="it" />);
     for (const field of ['what', 'where', 'notProve', 'defense'] as const) {
       expect(
         screen.getByText(translate('it', `defense.${field}`)),
@@ -20,7 +20,7 @@ describe('DefensePanel', () => {
   });
 
   it('shows CWE/OWASP references and the inert-payload disclaimer', () => {
-    render(<DefensePanel meta={meta} lang="en" />);
+    render(<DefensePanel subject={meta} lang="en" />);
     expect(screen.getByText(/CWE-116/)).toBeInTheDocument();
     expect(screen.getByText(/A03:2021/)).toBeInTheDocument();
     expect(
@@ -29,7 +29,7 @@ describe('DefensePanel', () => {
   });
 
   it('uses an accessible labelled region', () => {
-    render(<DefensePanel meta={meta} lang="en" />);
+    render(<DefensePanel subject={meta} lang="en" />);
     expect(
       screen.getByRole('region', { name: translate('en', 'defense.title') }),
     ).toBeInTheDocument();
