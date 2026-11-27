@@ -1,12 +1,35 @@
 @import 'tailwindcss';
 
-/* Token di base del tema "forgia" (ambra/bronzo su fondo scuro). In Fase 2
-   diventeranno un design system completo. */
+/* ---- Design token (tema "forgia": ambra/bronzo). Dark di default, light via
+   [data-theme='light']; vedi roadmap §Design. Contrasto verificato per AA. ---- */
 :root {
   color-scheme: dark light;
   --wf-bg: #1a1512;
+  --wf-surface: #241c16;
+  --wf-surface-2: #2e241c;
+  --wf-border: rgba(247, 185, 85, 0.22);
+  --wf-fg: #f5efe8;
+  --wf-muted: #c3b3a2;
   --wf-amber: #f7b955;
   --wf-bronze: #c97b2b;
+  --wf-danger: #ff8a7a;
+  --wf-ok: #7bd88f;
+  --wf-radius: 12px;
+  --wf-mono:
+    'SFMono-Regular', ui-monospace, 'Cascadia Code', Consolas, monospace;
+}
+
+:root[data-theme='light'] {
+  --wf-bg: #f7f2ea;
+  --wf-surface: #fffdf9;
+  --wf-surface-2: #f1e7d8;
+  --wf-border: rgba(120, 80, 30, 0.28);
+  --wf-fg: #2a2016;
+  --wf-muted: #6a5a48;
+  --wf-amber: #b9741a;
+  --wf-bronze: #9a5a1e;
+  --wf-danger: #b4232a;
+  --wf-ok: #1f7a3a;
 }
 
 html,
@@ -18,10 +41,286 @@ body,
 body {
   margin: 0;
   background: var(--wf-bg);
+  color: var(--wf-fg);
   font-family:
     'Segoe UI',
     system-ui,
     -apple-system,
     Arial,
     sans-serif;
+  line-height: 1.5;
+}
+
+.wf-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+:where(a) {
+  color: var(--wf-amber);
+}
+
+:where(button, select, textarea, input, a):focus-visible {
+  outline: 2px solid var(--wf-amber);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* ---- App shell ---- */
+.wf-app {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  min-height: 100%;
+}
+
+.wf-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.wf-brand__name {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.wf-brand__fang {
+  color: var(--wf-amber);
+}
+
+.wf-brand__tagline {
+  margin: 0.15rem 0 0;
+  color: var(--wf-muted);
+  font-size: 0.95rem;
+}
+
+.wf-header__controls {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.wf-main {
+  flex: 1;
+}
+
+/* ---- Workbench ---- */
+.wf-workbench {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.wf-workbench__io {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 760px) {
+  .wf-workbench__io {
+    grid-template-columns: 1fr;
+  }
+}
+
+.wf-panel {
+  background: var(--wf-surface);
+  border: 1px solid var(--wf-border);
+  border-radius: var(--wf-radius);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.wf-panel__label {
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--wf-muted);
+}
+
+.wf-panel__meta {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--wf-muted);
+  font-family: var(--wf-mono);
+}
+
+.wf-textarea,
+.wf-select,
+.wf-output {
+  width: 100%;
+  background: var(--wf-bg);
+  color: var(--wf-fg);
+  border: 1px solid var(--wf-border);
+  border-radius: 8px;
+  padding: 0.6rem 0.7rem;
+  font-family: var(--wf-mono);
+  font-size: 0.9rem;
+  box-sizing: border-box;
+}
+
+.wf-textarea {
+  resize: vertical;
+  min-height: 7rem;
+}
+
+.wf-select--compact {
+  width: auto;
+  padding: 0.45rem 0.6rem;
+}
+
+.wf-op__description {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--wf-muted);
+}
+
+.wf-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.wf-output-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: 0.3rem;
+}
+
+.wf-output {
+  display: block;
+  min-height: 4rem;
+}
+
+.wf-output__value {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: var(--wf-amber);
+  font-family: var(--wf-mono);
+}
+
+.wf-output__hint,
+.wf-output__error {
+  color: var(--wf-muted);
+}
+
+.wf-output__error {
+  color: var(--wf-danger);
+}
+
+.wf-button {
+  background: var(--wf-surface-2);
+  color: var(--wf-fg);
+  border: 1px solid var(--wf-border);
+  border-radius: 8px;
+  padding: 0.45rem 0.8rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.wf-button:hover:not(:disabled) {
+  border-color: var(--wf-amber);
+}
+
+.wf-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ---- Defense panel ---- */
+.wf-defense {
+  background: var(--wf-surface);
+  border: 1px solid var(--wf-border);
+  border-left: 4px solid var(--wf-amber);
+  border-radius: var(--wf-radius);
+  padding: 1rem 1.2rem;
+}
+
+.wf-defense__title {
+  margin: 0 0 0.75rem;
+  font-size: 1.05rem;
+}
+
+.wf-defense__list {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem 1.5rem;
+}
+
+@media (max-width: 760px) {
+  .wf-defense__list {
+    grid-template-columns: 1fr;
+  }
+}
+
+.wf-defense__part dt {
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--wf-bronze);
+  margin-bottom: 0.2rem;
+}
+
+.wf-defense__part dd {
+  margin: 0;
+  font-size: 0.92rem;
+}
+
+.wf-defense__part--defense dt {
+  color: var(--wf-ok);
+}
+
+.wf-defense__refs {
+  margin: 0.9rem 0 0;
+  font-family: var(--wf-mono);
+  font-size: 0.82rem;
+  color: var(--wf-muted);
+}
+
+.wf-defense__refs-label {
+  color: var(--wf-fg);
+  font-weight: 700;
+}
+
+.wf-defense__disclaimer {
+  margin: 0.6rem 0 0;
+  font-size: 0.82rem;
+  color: var(--wf-muted);
+  font-style: italic;
+}
+
+/* ---- Footer ---- */
+.wf-footer {
+  border-top: 1px solid var(--wf-border);
+  padding-top: 1rem;
+  color: var(--wf-muted);
+  font-size: 0.82rem;
+}
+
+.wf-footer p {
+  margin: 0.2rem 0;
 }
