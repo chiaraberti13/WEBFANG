@@ -5,7 +5,7 @@
 <p align="center"><a href="README.md">🇬🇧 English</a> · <a href="README.it.md">🇮🇹 Italiano</a></p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/status-early%20development-F2C94C?style=flat-square" alt="Project status: early development">
+  <img src="https://img.shields.io/badge/status-in%20development-F2C94C?style=flat-square" alt="Project status: in development">
   <img src="https://img.shields.io/badge/category-OFFENSIVE%20WEB%20SECURITY-D73A4A?style=flat-square" alt="Category: offensive web security">
   <img src="https://img.shields.io/badge/stack-TypeScript-8B949E?style=flat-square" alt="Stack: TypeScript">
   <img src="https://img.shields.io/badge/runtime-client--side-22D3EE?style=flat-square" alt="Runtime: client-side">
@@ -24,11 +24,8 @@
 
 <p align="center"><a href="docs/ROADMAP.md"><strong>Roadmap</strong></a> · <a href="SECURITY.md">Security</a> · <a href="CONTRIBUTING.md">Contributing</a> · <a href="descrizione.md">Project description</a> · <a href="LICENSE">Licence</a> · <a href="https://github.com/chiaraberti13/WEBFANG/issues">Issues</a></p>
 
-> [!IMPORTANT]
-> **Early development — scaffold stage.** The repository has the data contract,
-> quality tooling and project foundations. The recipe engine, the transformation
-> catalogue, the defense panels and the guided mode are being built incrementally
-> (see [`docs/ROADMAP.md`](docs/ROADMAP.md), Phase 0 → MVP).
+> WebFang is in development. See the [roadmap](docs/ROADMAP.md) for feature
+> status and the checks planned for the first stable release.
 
 ## Quick navigation
 
@@ -60,40 +57,25 @@ correct fix into their stack. A beginner uses the guided mode and the
 
 ## What exists today?
 
-- The **text/byte data contract** (`src/core`): explicit text vs bytes, declared
-  encoding, structured translatable errors, cancellation and execution limits.
-- Strict TypeScript, ESLint (with no-`eval`/no-`any` AppSec rules) and Prettier.
-- Pinned tooling and dependency-install restrictions in [`.npmrc`](.npmrc).
-- A Vite + React 19 application shell, with a normal (PWA) and a single-file
-  build variant (one HTML file, runnable from `file://`).
-- A development roadmap ([`docs/ROADMAP.md`](docs/ROADMAP.md)) and a bilingual
-  project description ([`descrizione.md`](descrizione.md)).
-- This bilingual presentation (README EN/IT).
-
-No release is available yet. Do not infer runtime security from scaffold checks.
+- **Transformations** between text and bytes, including Base64, URL encoding, HTML entities, hex, Unicode escapes, and hashing.
+- **Composable recipes** with undo/redo and import and export in WebFang format.
+- **Local inspection** of JWTs and the `Set-Cookie` and `Content-Security-Policy` headers.
+- **Guided workflows** with defense panels, a sanitized HTML preview, and a regular expression tester.
 
 ## 🗺️ Architecture Diagram
 
 ```mermaid
 flowchart TD
-    accTitle: Architecture of WEBFANG
-    accDescr: Vite builds the same React app as an installable PWA or a standalone HTML file. In both versions, the Base64 demo runs locally and a separate worker checks browser capabilities at startup.
     vite["Vite"] --> pwa["Installable PWA"]
     vite --> file["Standalone HTML file"]
     pwa --> app["React interface"]
     file --> app
-    app --> demo["Text to bytes"]
-    demo --> output64["Base64 preview"]
-    app --> probe["Startup worker"]
-    probe --> checks["WebCrypto and WebAssembly checks"]
-
-    classDef core fill:#23313a,stroke:#7193a7,color:#f4f7f8;
-    classDef output fill:#2b3035,stroke:#8b959e,color:#f4f7f8;
-    class app,demo,probe core;
-    class output64,checks output;
+    app --> transforms["Transformations and reports"]
+    app --> recipes["Recipe engine"]
+    app --> regex["Regex worker"]
 ```
 
-Vite builds the same React app as an installable PWA or a standalone HTML file. In both versions, the Base64 demo runs locally and a separate worker checks browser capabilities at startup.
+Vite builds a PWA and a standalone HTML file from the same React app. The browser processes transformations, recipes, and reports locally. A separate worker evaluates regular expressions.
 
 ## Development setup
 

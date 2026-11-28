@@ -15,7 +15,7 @@
 
 ## ✅ Stato di avanzamento (implementazione) — aggiornato 2026-11-28
 
-<sub>Sincronizzato con `main` (commit `41592e8`). Stati per feature: FEATURE_DONE = criteri funzionali soddisfatti, test mirati superati e commit pubblicato; la validazione finale globale è tracciata a parte. Baseline di qualità: 107 test unit + 11 e2e (a11y axe su tutti i tab + gate "nessuna richiesta di rete inattesa") verdi; lint/typecheck/format puliti; build PWA e single-file ok.</sub>
+Audit di `main` al commit `df7c0de`. L’app è funzionante e in consolidamento. La [CI di riferimento](https://github.com/chiaraberti13/WEBFANG/actions/runs/46152865895) ha completato installazione da checkout pulito, lint, typecheck, formattazione, unit test, build PWA e HTML autonomo ed E2E Chromium con axe e controlli di rete. Non risultano issue aperte né GitHub Release. Le competenze applicate sono definite in [COMPETENZE.md](COMPETENZE.md).
 
 | Area / Fase | Stato | Evidenza (commit) |
 | --- | --- | --- |
@@ -34,20 +34,23 @@
 | Fase 4 — Regex tester anti-ReDoS (Web Worker) | FEATURE_DONE | `bc0db68` |
 | Toolkit HTTP — Set-Cookie inspector | FEATURE_DONE | `63d2df0` |
 | Toolkit HTTP — CSP analyzer | FEATURE_DONE | `41592e8` |
+| Trasformazioni Unicode escape/unescape | FEATURE_DONE | `df7c0de`, catalogo operazioni e test dedicati |
 
-### 🔜 Attività aperte
+### Attività residue e criteri di chiusura
 
-- **TODO** Toolkit HTTP — request builder/parser completo (oltre Set-Cookie/CSP).
-- **TODO** Importer ricette CyberChef (bridge di migrazione).
-- **TODO** "Magic" / auto-detect dell'operazione probabile.
-- **TODO** Diagramma "Parsing Mismatch" (SVG didattico).
-- **TODO** Hashing MD5/HMAC via `hash-wasm` in worker; offload degli hash grandi su worker.
-- **PARTIAL** Validazione finale (Fase 3 test di usabilità; installazione da checkout pulito, parità lingue, rollback, assenza segreti; tag v1.0). I gate a11y e privacy sono già attivi in CI.
+| ID | Stato | Priorità / stima | Dipendenze | Criterio ed evidenza |
+| --- | --- | --- | --- | --- |
+| DOC-01 | FEATURE_DONE | P1 / bassa | — | README IT/EN allineati al catalogo e all'architettura in `src/`, con link reciproci e licenza GPL-3.0. |
+| CSP-01 | READY_TO_CLOSE | P1 / bassa | — | La prima direttiva CSP resta effettiva, le copie sono segnalate come ignorate e la capitalizzazione delle parole chiave non cambia l'esito. Regressioni in `src/lib/csp.test.ts`. |
+| HTTP-01 | TODO | P2 / media | — | Ispezione locale di richieste HTTP testuali, con metodo, percorso e intestazioni, senza invio di traffico. Test con messaggi sintetici validi e malformati. |
+| UX-01 | TODO | P2 / bassa | — | Diagramma bilingue delle fasi di parsing e verifica di comprensione con esempi neutri. |
+| HASH-01 | TODO | P2 / media | — | Valutare HMAC, MD5 per compatibilità esplicita e worker per input grandi. Vettori noti, gestione delle chiavi e misure su PWA e HTML autonomo. |
+| RECIPE-01 | TODO | P3 / media | — | Importare ricette CyberChef per trasformazioni generiche supportate e segnalare le operazioni incompatibili. Fixture di migrazione e round-trip. |
+| UX-02 | TODO | P3 / media | — | Riconoscere formati di codifica con spiegazione dell'ipotesi e conferma manuale. Fixture ambigue e controllo dei falsi positivi. |
+| QA-01 | PARTIAL | P1 / alta | Funzionalità previste per v1.0 | Estendere la baseline Chromium a Firefox e WebKit. Verificare coverage, Lighthouse (prestazioni e accessibilità ≥ 90), usabilità, parità IT/EN, dipendenze, segreti e configurazione di produzione sul candidato. |
+| REL-01 | TODO | P1 / media | QA-01 | Verificare deployment e rollback, protezioni finali di main e versione nel changelog. Pubblicare il tag stabile e verificarne il commit. |
 
-### Verifiche globali differite
-
-- Suite e2e su più browser; Lighthouse CI (perf/a11y ≥ 90).
-- Soglia di coverage bloccante in CI (oggi `pnpm test` gira senza gate coverage; la soglia su `lib`/`core`/`recipes` resta in `pnpm test:coverage`).
+La licenza effettiva è GPL-3.0. I riferimenti ad Apache-2.0 nelle sezioni storiche riportano una proposta iniziale. Il repository contiene la configurazione Vercel. L'URL pubblico resta da verificare.
 
 Il dettaglio tecnico e i criteri di ciascuna fase restano nelle sezioni sottostanti.
 

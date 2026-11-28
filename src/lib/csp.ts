@@ -39,13 +39,26 @@ export function parseCsp(header: string): CspDirective[] {
 
 export function cspReport(directives: CspDirective[]): Report {
   const fields: ReportField[] = [];
-  const names = new Set(directives.map((d) => d.name));
+  const names = new Set<string>();
 
   for (const directive of directives) {
     const joined = directive.sources.join(' ');
-    const unsafe = directive.sources.some(
-      (s) => s === "'unsafe-inline'" || s === "'unsafe-eval'",
-    );
+    if (names.has(directive.name)) {
+      fields.push({
+        label: directive.name,
+        value: joined
+          ? `ignorata / ignored: ${joined}`
+          : 'ignorata / ignored',
+        severity: 'warn',
+      });
+      continue;
+    }
+    names.add(directive.name);
+
+    const unsafe = directive.sources.some((source) => {
+      const keyword = source.toLowerCase();
+      return keyword === "'unsafe-inline'" || keyword === "'unsafe-eval'";
+    });
     const wildcard = directive.sources.includes('*');
     fields.push({
       label: directive.name,

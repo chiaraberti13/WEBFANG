@@ -20,6 +20,25 @@ describe('CSP analyzer', () => {
     expect(field('img-src')?.severity).toBe('warn');
   });
 
+  it('flags unsafe keywords regardless of case', () => {
+    const report = cspReport(parseCsp("script-src 'UNSAFE-EVAL'"));
+    expect(report.fields[0]?.severity).toBe('danger');
+  });
+
+  it('reports later copies of a directive as ignored', () => {
+    const report = cspReport(
+      parseCsp("script-src 'self'; SCRIPT-SRC 'unsafe-inline'"),
+    );
+    expect(report.fields.slice(0, 2)).toEqual([
+      { label: 'script-src', value: "'self'", severity: 'info' },
+      {
+        label: 'script-src',
+        value: "ignorata / ignored: 'unsafe-inline'",
+        severity: 'warn',
+      },
+    ]);
+  });
+
   it('warns when default-src and object-src are missing', () => {
     const report = cspReport(parseCsp("img-src 'self'"));
     const field = (label: string) =>
