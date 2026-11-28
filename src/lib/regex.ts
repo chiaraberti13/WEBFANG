@@ -30,6 +30,10 @@ export function runRegex(
   let truncated = false;
 
   for (const m of input.matchAll(re)) {
+    if (matches.length >= maxMatches) {
+      truncated = true;
+      break;
+    }
     matches.push({
       index: m.index ?? 0,
       match: m[0],
@@ -37,10 +41,6 @@ export function runRegex(
         .slice(1)
         .map((group) => group ?? ''),
     });
-    if (matches.length >= maxMatches) {
-      truncated = true;
-      break;
-    }
   }
 
   return { matches, truncated };

@@ -34,3 +34,46 @@ test('the regex tester runs in a worker and shows matches', async ({
   await expect(page.getByText('test@example.com')).toBeVisible();
   await expect(page.getByText(/2 match/)).toBeVisible();
 });
+
+test('supports keyboard navigation between tool tabs', async ({ page }) => {
+  const transform = page.getByRole('tab', { name: 'Trasforma' });
+  const compose = page.getByRole('tab', { name: 'Componi' });
+  const regex = page.getByRole('tab', { name: 'Regex' });
+
+  await transform.focus();
+  await page.keyboard.press('ArrowRight');
+  await expect(compose).toBeFocused();
+  await expect(compose).toHaveAttribute('aria-selected', 'true');
+  await expect(transform).toHaveAttribute('tabindex', '-1');
+
+  await page.keyboard.press('End');
+  await expect(regex).toBeFocused();
+  await page.keyboard.press('ArrowRight');
+  await expect(transform).toBeFocused();
+  await page.keyboard.press('ArrowLeft');
+  await expect(regex).toBeFocused();
+  await page.keyboard.press('Home');
+  await expect(transform).toBeFocused();
+  await page.keyboard.press('Tab');
+  await expect(page.getByRole('tabpanel', { name: 'Trasforma' })).toBeFocused();
+});
+
+test('keeps the workbench and recipe in memory when switching tabs', async ({
+  page,
+}) => {
+  const transform = page.getByRole('tab', { name: 'Trasforma' });
+  const compose = page.getByRole('tab', { name: 'Componi' });
+  const recipe = page.getByRole('tabpanel', { name: 'Componi' });
+  const input = page.getByRole('textbox', { name: 'Input', exact: true });
+
+  await input.fill('Test di sessione');
+  await compose.click();
+  await recipe.getByRole('button', { name: /Aggiungi passaggio/ }).click();
+  await transform.click();
+  await expect(input).toHaveValue('Test di sessione');
+  await compose.click();
+  await expect(recipe.getByText('Output finale')).toBeVisible();
+
+  await page.reload();
+  await expect(input).toHaveValue('WebFang');
+});

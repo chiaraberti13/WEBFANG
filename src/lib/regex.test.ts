@@ -23,6 +23,12 @@ describe('runRegex', () => {
     expect(truncated).toBe(true);
   });
 
+  it('does not report truncation when every match fits', () => {
+    const { matches, truncated } = runRegex('.', '', 'ab', 2);
+    expect(matches).toHaveLength(2);
+    expect(truncated).toBe(false);
+  });
+
   it('throws on an invalid pattern', () => {
     expect(() => runRegex('(', '', 'x')).toThrow();
   });

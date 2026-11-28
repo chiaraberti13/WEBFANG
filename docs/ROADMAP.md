@@ -15,7 +15,7 @@
 
 ## ✅ Stato di avanzamento (implementazione) — aggiornato 2026-11-28
 
-Audit di `main` al commit `df7c0de`. L’app è funzionante e in consolidamento. La [CI di riferimento](https://github.com/chiaraberti13/WEBFANG/actions/runs/46152865895) ha completato installazione da checkout pulito, lint, typecheck, formattazione, unit test, build PWA e HTML autonomo ed E2E Chromium con axe e controlli di rete. Non risultano issue aperte né GitHub Release. Le competenze applicate sono definite in [COMPETENZE.md](COMPETENZE.md).
+Riferimento pre-intervento: `main` al commit `8304b5e`, con [CI verde](https://github.com/chiaraberti13/WEBFANG/actions/runs/46153483426) per lint, tipi, formattazione, unit test, build PWA e HTML autonomo ed E2E Chromium con axe e controlli di rete. Il prodotto è funzionante e in consolidamento. Le competenze applicate sono definite in [COMPETENZE.md](COMPETENZE.md).
 
 | Area / Fase | Stato | Evidenza (commit) |
 | --- | --- | --- |
@@ -36,12 +36,34 @@ Audit di `main` al commit `df7c0de`. L’app è funzionante e in consolidamento.
 | Toolkit HTTP — CSP analyzer | FEATURE_DONE | `41592e8` |
 | Trasformazioni Unicode escape/unescape | FEATURE_DONE | `df7c0de`, catalogo operazioni e test dedicati |
 
+### Valutazione evolutiva
+
+| Area | Evidenza | Decisione e compromesso |
+| --- | --- | --- |
+| Architettura e stack | Motore testo/byte, catalogo e ricette separati dalla UI React. Vite genera PWA e HTML autonomo. | Evolvere i contratti esistenti. Un backend introdurrebbe trasferimento dati, gestione infrastrutturale e perdita di portabilità offline. |
+| Funzionalità e prodotto | Il catalogo raccoglie trasformazioni, ispezioni locali e spiegazioni contestuali. | Dare priorità all'ispezione HTTP locale e alla chiarezza dei report. Posticipare auto-detect e import di terze parti finché accuratezza e compatibilità sono misurabili. |
+| Sicurezza e privacy | Le ricette da URL vengono decompresse prima della validazione. L'input di lavoro non appartiene al modello serializzato. | Limitare import e decompressione all'ingresso, preservando i link emessi da WebFang. Verificare offline, assenza di rete inattesa e configurazione distribuita. |
+| Prestazioni e scalabilità | Le regex hanno un worker. Il workbench e le ricette sono eseguiti nel browser. | Misurare latenza e reattività con più dimensioni d'input prima di assegnare altre operazioni a worker. Verificare anche memoria e peso dell'HTML autonomo. |
+| Design, UX e accessibilità | Identità cromatica condivisa, modalità guidata, temi e baseline axe. Review delle schede e finestre in `App.tsx`, `Wizard.tsx` e `Onboarding.tsx`. | Correggere navigazione e perdita di lavoro. Provare i flussi su viewport stretta, zoom e tastiera prima di decidere ritocchi a densità e gerarchia. |
+| Bilinguismo, codice e documentazione | Catalogo IT/EN centralizzato, report con alcune etichette bilingui combinate e link alla demo nei README. | Rendere i report coerenti con la lingua selezionata, automatizzare il controllo di parità delle chiavi e mantenere un solo backlog operativo. |
+
+Verifiche della tranche: lint, typecheck, formattazione, 116 test unitari e di componente, 13 E2E Chromium incluse accessibilità e privacy, build PWA e HTML autonomo.
+
+La tabella seguente governa il lavoro corrente. Le fasi W1–W12 e le stime originali nelle sezioni successive documentano l'impostazione storica.
+
 ### Attività residue e criteri di chiusura
 
 | ID | Stato | Priorità / stima | Dipendenze | Criterio ed evidenza |
 | --- | --- | --- | --- | --- |
 | DOC-01 | FEATURE_DONE | P1 / bassa | — | README IT/EN allineati al catalogo e all'architettura in `src/`, con link reciproci e licenza GPL-3.0. |
 | CSP-01 | FEATURE_DONE | P1 / bassa | — | La prima direttiva CSP resta effettiva, le copie sono segnalate come ignorate e la capitalizzazione delle parole chiave non cambia l'esito. Regressioni in `src/lib/csp.test.ts` superate sul commit `2ad6576` ([CI](https://github.com/chiaraberti13/WEBFANG/actions/runs/46153142301)). |
+| A11Y-01 | FEATURE_DONE | P1 / bassa | — | Navigazione schede con frecce, Home/End, focus e pannelli associati. Verifica Playwright del percorso da tastiera. |
+| UX-03 | FEATURE_DONE | P1 / bassa | A11Y-01 | Trasformazioni e ricetta conservate in memoria tra schede. Test di continuità e reset dell'input al ricaricamento. |
+| REGEX-01 | FEATURE_DONE | P1 / bassa | — | Segnalare il troncamento solo se un risultato è omesso. Test al limite esatto e oltre il limite. |
+| A11Y-02 | TODO | P1 / media | — | Focus iniziale, Escape e ripristino del focus per onboarding e wizard. Playwright con finestre aperte. |
+| SEC-01 | TODO | P1 / media | — | Limitare dimensioni e lavoro dell'import ricette. Test su link storici, input malformati e limiti di risorse. |
+| I18N-01 | PARTIAL | P2 / media | — | Test automatico di parità fra chiavi e segnaposto del catalogo. Resta la localizzazione delle frasi nei report. |
+| DESIGN-01 | TODO | P2 / media | A11Y-01, A11Y-02 | Verificare contrasto, focus, zoom e viewport 320 px nei due temi. Correggere problemi riproducibili. |
 | HTTP-01 | TODO | P2 / media | — | Ispezione locale di richieste HTTP testuali, con metodo, percorso e intestazioni, senza invio di traffico. Test con messaggi sintetici validi e malformati. |
 | UX-01 | PARTIAL | P2 / bassa | — | Diagramma bilingue documentato nella sezione B. Restano l'integrazione nell'app e la verifica di comprensione. |
 | HASH-01 | TODO | P2 / media | — | Valutare HMAC, MD5 per compatibilità esplicita e worker per input grandi. Vettori noti, gestione delle chiavi e misure su PWA e HTML autonomo. |
