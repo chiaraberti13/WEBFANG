@@ -46,9 +46,7 @@ export function cspReport(directives: CspDirective[]): Report {
     if (names.has(directive.name)) {
       fields.push({
         label: directive.name,
-        value: joined
-          ? `ignorata / ignored: ${joined}`
-          : 'ignorata / ignored',
+        value: joined ? `ignorata / ignored: ${joined}` : 'ignorata / ignored',
         severity: 'warn',
       });
       continue;
