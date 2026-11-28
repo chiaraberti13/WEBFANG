@@ -466,14 +466,15 @@ body {
 }
 
 .wf-modal {
-  position: fixed;
-  inset: 0;
+  margin: auto;
+  width: min(30rem, calc(100% - 2rem));
+  border-radius: var(--wf-radius);
+  max-height: calc(100dvh - 2rem);
+  color: var(--wf-fg);
+}
+
+.wf-modal::backdrop {
   background: rgba(0, 0, 0, 0.55);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-  z-index: 10;
 }
 
 .wf-modal__card {

@@ -8,3 +8,17 @@ import { afterEach } from 'vitest';
 afterEach(() => {
   cleanup();
 });
+
+// jsdom models the open attribute but leaves the native dialog methods out.
+// Browser tests exercise focus, modality and Escape with the real dialog.
+if (
+  typeof HTMLDialogElement !== 'undefined' &&
+  !HTMLDialogElement.prototype.showModal
+) {
+  HTMLDialogElement.prototype.showModal = function () {
+    this.open = true;
+  };
+  HTMLDialogElement.prototype.close = function () {
+    this.open = false;
+  };
+}

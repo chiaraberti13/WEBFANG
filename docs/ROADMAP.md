@@ -47,7 +47,7 @@ Riferimento pre-intervento: `main` al commit `8304b5e`, con [CI verde](https://g
 | Design, UX e accessibilità | Identità cromatica condivisa, modalità guidata, temi e baseline axe. Review delle schede e finestre in `App.tsx`, `Wizard.tsx` e `Onboarding.tsx`. | Correggere navigazione e perdita di lavoro. Provare i flussi su viewport stretta, zoom e tastiera prima di decidere ritocchi a densità e gerarchia. |
 | Bilinguismo, codice e documentazione | Catalogo IT/EN centralizzato, report con alcune etichette bilingui combinate e link alla demo nei README. | Rendere i report coerenti con la lingua selezionata, automatizzare il controllo di parità delle chiavi e mantenere un solo backlog operativo. |
 
-Verifiche della tranche: lint, typecheck, formattazione, 116 test unitari e di componente, 13 E2E Chromium incluse accessibilità e privacy, build PWA e HTML autonomo.
+Verifiche della tranche: lint, typecheck, formattazione, 116 test unitari e di componente, 14 E2E Chromium incluse accessibilità e privacy, build PWA e HTML autonomo.
 
 La tabella seguente governa il lavoro corrente. Le fasi W1–W12 e le stime originali nelle sezioni successive documentano l'impostazione storica.
 
@@ -60,7 +60,7 @@ La tabella seguente governa il lavoro corrente. Le fasi W1–W12 e le stime orig
 | A11Y-01 | FEATURE_DONE | P1 / bassa | — | Navigazione schede con frecce, Home/End, focus e pannelli associati. Verifica Playwright del percorso da tastiera. |
 | UX-03 | FEATURE_DONE | P1 / bassa | A11Y-01 | Trasformazioni e ricetta conservate in memoria tra schede. Test di continuità e reset dell'input al ricaricamento. |
 | REGEX-01 | FEATURE_DONE | P1 / bassa | — | Segnalare il troncamento solo se un risultato è omesso. Test al limite esatto e oltre il limite. |
-| A11Y-02 | TODO | P1 / media | — | Focus iniziale, Escape e ripristino del focus per onboarding e wizard. Playwright con finestre aperte. |
+| A11Y-02 | FEATURE_DONE | P1 / media | — | Onboarding e wizard condividono un dialogo nativo. Verificati in Chromium il focus iniziale, la chiusura con Escape e il ritorno al pulsante di apertura. |
 | SEC-01 | TODO | P1 / media | — | Limitare dimensioni e lavoro dell'import ricette. Test su link storici, input malformati e limiti di risorse. |
 | I18N-01 | PARTIAL | P2 / media | — | Test automatico di parità fra chiavi e segnaposto del catalogo. Resta la localizzazione delle frasi nei report. |
 | DESIGN-01 | TODO | P2 / media | A11Y-01, A11Y-02 | Verificare contrasto, focus, zoom e viewport 320 px nei due temi. Correggere problemi riproducibili. |

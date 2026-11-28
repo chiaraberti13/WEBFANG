@@ -77,3 +77,19 @@ test('keeps the workbench and recipe in memory when switching tabs', async ({
   await page.reload();
   await expect(input).toHaveValue('WebFang');
 });
+
+test('dialogs take focus and restore it when dismissed with Escape', async ({
+  page,
+}) => {
+  for (const name of ['Aiuto', 'Non so cosa mi serve']) {
+    const trigger = page.getByRole('button', { name, exact: true });
+    await trigger.click();
+    const dialog = page.getByRole('dialog');
+    await expect(dialog).toBeVisible();
+    await expect(dialog.locator(':focus')).toHaveCount(1);
+
+    await page.keyboard.press('Escape');
+    await expect(dialog).toHaveCount(0);
+    await expect(trigger).toBeFocused();
+  }
+});
