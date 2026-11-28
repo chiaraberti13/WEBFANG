@@ -13,6 +13,46 @@
 
 ---
 
+## ✅ Stato di avanzamento (implementazione) — aggiornato 2026-11-28
+
+<sub>Sincronizzato con `main` (commit `41592e8`). Stati per feature: FEATURE_DONE = criteri funzionali soddisfatti, test mirati superati e commit pubblicato; la validazione finale globale è tracciata a parte. Baseline di qualità: 107 test unit + 11 e2e (a11y axe su tutti i tab + gate "nessuna richiesta di rete inattesa") verdi; lint/typecheck/format puliti; build PWA e single-file ok.</sub>
+
+| Area / Fase | Stato | Evidenza (commit) |
+| --- | --- | --- |
+| Fase 0 — contratto testo/byte, worker inline da `file://`, PWA, scaffolding, CI | FEATURE_DONE | scaffold iniziale |
+| Fase 1 — vertical slice (OperationCard + DefensePanel) | FEATURE_DONE | `71865b9` |
+| Fase 2 · flusso 1 — "capire una stringa" (Base64/URL/HTML/Hex/SHA-256) | FEATURE_DONE | `0aa9622` |
+| Fase 2 · flusso 2 — "comporre" (motore ricetta, undo/redo, share URL, import/export) | FEATURE_DONE | `063467a`, `c5e0648` |
+| Fase 2 · flusso 3 — "contesto XSS" (payload inerti + difesa) | FEATURE_DONE | `fb47794` |
+| Fase 2 — usabilità non esperti (wizard, onboarding, modalità guidata/esperto) | FEATURE_DONE | `44945d1` |
+| Qualità — gate a11y (axe) + e2e Playwright + "no rete inattesa" | FEATURE_DONE | `eee5345` |
+| Fase 4 — JWT Workbench (decode ≠ verify, `alg:none`) | FEATURE_DONE | `75a35bb` |
+| Fase 4 — payload pack (SQLi/SSTI/LFI/cmd/SSRF/open-redirect) | FEATURE_DONE | `07882d2` |
+| Fase 4 — remediation copy-paste multi-linguaggio | FEATURE_DONE | `43cc675` |
+| Fase 4 — Defense Playground (DOMPurify) | FEATURE_DONE | `3fe25e5` |
+| Fase 4 — hashing esteso SHA-1/384/512 | FEATURE_DONE | `0cb976d` |
+| Fase 4 — Regex tester anti-ReDoS (Web Worker) | FEATURE_DONE | `bc0db68` |
+| Toolkit HTTP — Set-Cookie inspector | FEATURE_DONE | `63d2df0` |
+| Toolkit HTTP — CSP analyzer | FEATURE_DONE | `41592e8` |
+
+### 🔜 Attività aperte
+
+- **TODO** Toolkit HTTP — request builder/parser completo (oltre Set-Cookie/CSP).
+- **TODO** Importer ricette CyberChef (bridge di migrazione).
+- **TODO** "Magic" / auto-detect dell'operazione probabile.
+- **TODO** Diagramma "Parsing Mismatch" (SVG didattico).
+- **TODO** Hashing MD5/HMAC via `hash-wasm` in worker; offload degli hash grandi su worker.
+- **PARTIAL** Validazione finale (Fase 3 test di usabilità; installazione da checkout pulito, parità lingue, rollback, assenza segreti; tag v1.0). I gate a11y e privacy sono già attivi in CI.
+
+### Verifiche globali differite
+
+- Suite e2e su più browser; Lighthouse CI (perf/a11y ≥ 90).
+- Soglia di coverage bloccante in CI (oggi `pnpm test` gira senza gate coverage; la soglia su `lib`/`core`/`recipes` resta in `pnpm test:coverage`).
+
+Il dettaglio tecnico e i criteri di ciascuna fase restano nelle sezioni sottostanti.
+
+---
+
 ## ⏱️ Stima di sviluppo (sintesi)
 
 | Traguardo | Durata (team piccolo dedicato) | Effort |
