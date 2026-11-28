@@ -41,9 +41,9 @@ Audit di `main` al commit `df7c0de`. L’app è funzionante e in consolidamento.
 | ID | Stato | Priorità / stima | Dipendenze | Criterio ed evidenza |
 | --- | --- | --- | --- | --- |
 | DOC-01 | FEATURE_DONE | P1 / bassa | — | README IT/EN allineati al catalogo e all'architettura in `src/`, con link reciproci e licenza GPL-3.0. |
-| CSP-01 | READY_TO_CLOSE | P1 / bassa | — | La prima direttiva CSP resta effettiva, le copie sono segnalate come ignorate e la capitalizzazione delle parole chiave non cambia l'esito. Regressioni in `src/lib/csp.test.ts`. |
+| CSP-01 | FEATURE_DONE | P1 / bassa | — | La prima direttiva CSP resta effettiva, le copie sono segnalate come ignorate e la capitalizzazione delle parole chiave non cambia l'esito. Regressioni in `src/lib/csp.test.ts` superate sul commit `2ad6576` ([CI](https://github.com/chiaraberti13/WEBFANG/actions/runs/46153142301)). |
 | HTTP-01 | TODO | P2 / media | — | Ispezione locale di richieste HTTP testuali, con metodo, percorso e intestazioni, senza invio di traffico. Test con messaggi sintetici validi e malformati. |
-| UX-01 | TODO | P2 / bassa | — | Diagramma bilingue delle fasi di parsing e verifica di comprensione con esempi neutri. |
+| UX-01 | PARTIAL | P2 / bassa | — | Diagramma bilingue documentato nella sezione B. Restano l'integrazione nell'app e la verifica di comprensione. |
 | HASH-01 | TODO | P2 / media | — | Valutare HMAC, MD5 per compatibilità esplicita e worker per input grandi. Vettori noti, gestione delle chiavi e misure su PWA e HTML autonomo. |
 | RECIPE-01 | TODO | P3 / media | — | Importare ricette CyberChef per trasformazioni generiche supportate e segnalare le operazioni incompatibili. Fixture di migrazione e round-trip. |
 | UX-02 | TODO | P3 / media | — | Riconoscere formati di codifica con spiegazione dell'ipotesi e conferma manuale. Fixture ambigue e controllo dei falsi positivi. |
@@ -244,15 +244,20 @@ Per ogni payload generato, il tab "Difesa" mostra **codice pronto da incollare**
 - **XSS** → contextual encoding in React (JSX nativo), Blade/Twig, Go templates. Nota didattica esplicita: **la CSP è una difesa *aggiuntiva*, non un sostituto dell'output encoding contestuale.**
 - **SSRF** → allowlist IP corretta + disabilitazione dei redirect HTTP nel client standard.
 
-### B. Diagramma interattivo del "Parsing Mismatch"
+### B. Interpretazione della richiesta / Request interpretation
 
-Molti bypass (WAF, doppio URL-decode, path traversal) nascono dal fatto che **reverse proxy e backend interpretano i caratteri in modo diverso**. Un micro-componente SVG mostra la catena di decodifica:
-
+```mermaid
+flowchart TD
+    request["Richiesta ricevuta / Incoming request"] --> proxy["Proxy: interpreta e inoltra / Parses and forwards"]
+    proxy --> app["App: ricava metodo e percorso / Reads method and path"]
+    app --> route{"Percorso previsto? / Expected path?"}
+    route -->|"/guida"| allow["Mostra la guida / Show the guide"]
+    route -->|"/help"| missing["Cerca la rotta / Look up the route"]
 ```
-Client ──%252e%252e%252f──▶ [Nginx/WAF] ──decodifica: %2e%2e%2f──▶ [Node/Tomcat] ──decodifica: ../──▶ File System!
-```
 
-Serve a far capire **visivamente** perché la trasformazione ha successo e **dove** sanificare (a monte, non solo a valle).
+**IT.** In questo esempio, il proxy inoltra `/help` come `/guida` per una regola di riscrittura. L'applicazione riceve `/guida` e usa quel percorso per scegliere la pagina. Un test d'integrazione può verificare quale percorso vede ciascun componente e che i controlli di accesso si applichino alla risorsa effettivamente servita.
+
+**EN.** In this example, a rewrite rule forwards `/help` as `/guida`. The application receives `/guida` and uses that path to select the page. An integration test can verify which path each component sees and whether access checks apply to the resource actually served.
 
 ### C. "Defense Playground" (sanitizer in-browser)
 
