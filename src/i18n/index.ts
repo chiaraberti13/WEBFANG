@@ -175,6 +175,24 @@ const it: Catalog = {
   'payloads.list': 'Payload inerti',
   'payloads.copy': 'Copia',
 
+  // --- Defense Playground ---
+  'tab.playground': 'Playground',
+  'playground.title': 'Defense Playground',
+  'playground.intro':
+    'Incolla un payload e passalo per una difesa: vedi se un vettore eseguibile sopravvive. L’output è solo testo, non viene mai eseguito.',
+  'playground.inputLabel': 'Payload',
+  'playground.mode': 'Difesa',
+  'playground.mode.none': 'Nessuna difesa',
+  'playground.mode.purify-default': 'DOMPurify (default)',
+  'playground.mode.purify-strict': 'DOMPurify (restrittivo)',
+  'playground.mode.escape': 'HTML escape',
+  'playground.output': 'Output sanificato',
+  'playground.survives': 'Vettore eseguibile sopravvissuto',
+  'playground.neutralized': 'Neutralizzato: nessun vettore eseguibile',
+  'playground.note':
+    'Un esito “neutralizzato” qui non è una garanzia universale: dipende dalla configurazione e dal contesto di rendering.',
+  'guide.playground': 'Prova una difesa su un payload e osserva cosa resta.',
+
   'pack.sqli.label': 'SQL injection',
   'pack.sqli.description': 'Input che altera una query SQL.',
   'defense.pack.sqli.what':
@@ -560,6 +578,23 @@ const en: Catalog = {
   'payloads.pick': 'Family',
   'payloads.list': 'Inert payloads',
   'payloads.copy': 'Copy',
+
+  'tab.playground': 'Playground',
+  'playground.title': 'Defense Playground',
+  'playground.intro':
+    'Paste a payload and run it through a defense: see whether an executable vector survives. The output is text only and is never executed.',
+  'playground.inputLabel': 'Payload',
+  'playground.mode': 'Defense',
+  'playground.mode.none': 'No defense',
+  'playground.mode.purify-default': 'DOMPurify (default)',
+  'playground.mode.purify-strict': 'DOMPurify (strict)',
+  'playground.mode.escape': 'HTML escape',
+  'playground.output': 'Sanitized output',
+  'playground.survives': 'Executable vector survived',
+  'playground.neutralized': 'Neutralized: no executable vector',
+  'playground.note':
+    'A “neutralized” result here is not a universal guarantee: it depends on configuration and rendering context.',
+  'guide.playground': 'Try a defense on a payload and watch what remains.',
 
   'pack.sqli.label': 'SQL injection',
   'pack.sqli.description': 'Input that alters a SQL query.',

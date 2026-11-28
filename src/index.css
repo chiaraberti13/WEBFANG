@@ -583,6 +583,30 @@ body {
   color: var(--wf-fg);
 }
 
+/* ---- Defense Playground ---- */
+.wf-playground {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.wf-verdict {
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+}
+
+.wf-verdict--ok {
+  color: var(--wf-ok);
+  border: 1px solid var(--wf-ok);
+}
+
+.wf-verdict--danger {
+  color: var(--wf-danger);
+  border: 1px solid var(--wf-danger);
+}
+
 /* ---- Footer ---- */
 .wf-footer {
   border-top: 1px solid var(--wf-border);
