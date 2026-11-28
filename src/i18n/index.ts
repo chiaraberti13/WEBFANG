@@ -330,6 +330,37 @@ const it: Catalog = {
     'Converte esadecimale in byte; tollera spazi, richiede lunghezza pari.',
   'op.sha-256.label': 'SHA-256',
   'op.sha-256.description': 'Digest SHA-256 dei byte dell’input (hex).',
+  'op.sha-1.label': 'SHA-1',
+  'op.sha-1.description':
+    'Digest SHA-1 dei byte dell’input (hex). Algoritmo deprecato.',
+  'op.sha-384.label': 'SHA-384',
+  'op.sha-384.description': 'Digest SHA-384 dei byte dell’input (hex).',
+  'op.sha-512.label': 'SHA-512',
+  'op.sha-512.description': 'Digest SHA-512 dei byte dell’input (hex).',
+  'defense.sha-1.what':
+    'Calcola un digest a 160 bit, deterministico e a senso unico, dei byte dell’input.',
+  'defense.sha-1.where':
+    'Integrità e fingerprint legacy; compatibilità con sistemi datati.',
+  'defense.sha-1.notProve':
+    'SHA-1 è debole alle collisioni: non usarlo per firme o integrità contro un avversario.',
+  'defense.sha-1.defense':
+    'Usa SHA-256 o superiore. Per le password un KDF lento con sale (argon2/bcrypt), mai SHA grezzo.',
+  'defense.sha-384.what':
+    'Calcola un digest a 384 bit, deterministico e a senso unico, dei byte dell’input.',
+  'defense.sha-384.where':
+    'Integrità, fingerprint, confronto di digest; non serve a cifrare.',
+  'defense.sha-384.notProve':
+    'Hashing non è cifratura né, da solo, sicurezza delle password.',
+  'defense.sha-384.defense':
+    'Per le password usa un KDF lento con sale (argon2/bcrypt/scrypt). Confronta i digest a tempo costante.',
+  'defense.sha-512.what':
+    'Calcola un digest a 512 bit, deterministico e a senso unico, dei byte dell’input.',
+  'defense.sha-512.where':
+    'Integrità, fingerprint, confronto di digest; non serve a cifrare.',
+  'defense.sha-512.notProve':
+    'Hashing non è cifratura né, da solo, sicurezza delle password.',
+  'defense.sha-512.defense':
+    'Per le password usa un KDF lento con sale (argon2/bcrypt/scrypt). Confronta i digest a tempo costante.',
 
   'defense.url-encode.what':
     'Sostituisce i caratteri non sicuri in URL con %XX (UTF-8). La doppia codifica applica due passaggi.',
@@ -728,6 +759,37 @@ const en: Catalog = {
     'Converts hexadecimal to bytes; tolerates spaces, requires even length.',
   'op.sha-256.label': 'SHA-256',
   'op.sha-256.description': 'SHA-256 digest of the input bytes (hex).',
+  'op.sha-1.label': 'SHA-1',
+  'op.sha-1.description':
+    'SHA-1 digest of the input bytes (hex). Deprecated algorithm.',
+  'op.sha-384.label': 'SHA-384',
+  'op.sha-384.description': 'SHA-384 digest of the input bytes (hex).',
+  'op.sha-512.label': 'SHA-512',
+  'op.sha-512.description': 'SHA-512 digest of the input bytes (hex).',
+  'defense.sha-1.what':
+    'Computes a deterministic, one-way 160-bit digest of the input bytes.',
+  'defense.sha-1.where':
+    'Legacy integrity and fingerprints; compatibility with dated systems.',
+  'defense.sha-1.notProve':
+    'SHA-1 is collision-weak: do not use it for signatures or integrity against an adversary.',
+  'defense.sha-1.defense':
+    'Use SHA-256 or stronger. For passwords use a slow salted KDF (argon2/bcrypt), never raw SHA.',
+  'defense.sha-384.what':
+    'Computes a deterministic, one-way 384-bit digest of the input bytes.',
+  'defense.sha-384.where':
+    'Integrity, fingerprints, digest comparison; not for encryption.',
+  'defense.sha-384.notProve':
+    'Hashing is not encryption, nor on its own password security.',
+  'defense.sha-384.defense':
+    'For passwords use a slow salted KDF (argon2/bcrypt/scrypt). Compare digests in constant time.',
+  'defense.sha-512.what':
+    'Computes a deterministic, one-way 512-bit digest of the input bytes.',
+  'defense.sha-512.where':
+    'Integrity, fingerprints, digest comparison; not for encryption.',
+  'defense.sha-512.notProve':
+    'Hashing is not encryption, nor on its own password security.',
+  'defense.sha-512.defense':
+    'For passwords use a slow salted KDF (argon2/bcrypt/scrypt). Compare digests in constant time.',
 
   'defense.url-encode.what':
     'Replaces URL-unsafe characters with %XX (UTF-8). Double encoding applies two passes.',
