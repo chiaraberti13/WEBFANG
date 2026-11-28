@@ -4,6 +4,7 @@ import { htmlDecodeOp, htmlEncodeOp } from '../lib/html-entities.ts';
 import { hexDecodeOp, hexEncodeOp } from '../lib/hex.ts';
 import { sha1Op, sha256Op, sha384Op, sha512Op } from '../lib/hash.ts';
 import { jwtInspectOp } from '../lib/jwt.ts';
+import { cookieInspectOp } from '../lib/cookie.ts';
 import { asAnyOperation, type OperationMeta } from './types.ts';
 
 const urlSafeParam = {
@@ -127,6 +128,14 @@ export const OPERATIONS: readonly OperationMeta[] = [
     op: asAnyOperation(jwtInspectOp),
     booleanParams: [],
     defense: { cwe: 'CWE-347', owasp: 'A02:2021' },
+  },
+  {
+    id: 'cookie-inspect',
+    category: 'analyze',
+    i18nBase: 'cookie-inspect',
+    op: asAnyOperation(cookieInspectOp),
+    booleanParams: [],
+    defense: { cwe: 'CWE-1004', owasp: 'A05:2021' },
   },
 ];
 

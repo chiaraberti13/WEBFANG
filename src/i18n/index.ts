@@ -466,6 +466,18 @@ const it: Catalog = {
   'defense.jwt-inspect.defense':
     'Verifica la firma lato server con una allowlist di algoritmi (mai “none”), poi valida exp/nbf/iss/aud. Non fidarti dei claim prima della verifica.',
 
+  'op.cookie-inspect.label': 'Set-Cookie — ispeziona',
+  'op.cookie-inspect.description':
+    'Analizza un header Set-Cookie ed evidenzia i flag di sicurezza mancanti.',
+  'defense.cookie-inspect.what':
+    'Scompone nome, valore e attributi del cookie e segnala HttpOnly, Secure e SameSite assenti.',
+  'defense.cookie-inspect.where':
+    'Revisione delle risposte HTTP: cookie di sessione e token.',
+  'defense.cookie-inspect.notProve':
+    'L’analisi è sintattica: la presenza di un flag non garantisce una configurazione sicura nel contesto.',
+  'defense.cookie-inspect.defense':
+    'Per i cookie sensibili imposta HttpOnly, Secure e SameSite (Lax/Strict); usa il prefisso __Host- e una scadenza breve.',
+
   // --- errori strutturati ---
   'err.DECODE_FAILED': 'Decodifica fallita: input non valido.',
   'err.ENCODE_FAILED': 'Codifica fallita.',
@@ -920,6 +932,18 @@ const en: Catalog = {
     'Decoding is NOT verifying: a readable token may have an invalid signature, be expired or use alg:none.',
   'defense.jwt-inspect.defense':
     'Verify the signature server-side with an algorithm allowlist (never “none”), then validate exp/nbf/iss/aud. Do not trust claims before verification.',
+
+  'op.cookie-inspect.label': 'Set-Cookie — inspect',
+  'op.cookie-inspect.description':
+    'Parses a Set-Cookie header and flags missing security attributes.',
+  'defense.cookie-inspect.what':
+    'Breaks down the cookie name, value and attributes and flags missing HttpOnly, Secure and SameSite.',
+  'defense.cookie-inspect.where':
+    'Reviewing HTTP responses: session cookies and tokens.',
+  'defense.cookie-inspect.notProve':
+    'The analysis is syntactic: a present flag does not guarantee a secure configuration in context.',
+  'defense.cookie-inspect.defense':
+    'For sensitive cookies set HttpOnly, Secure and SameSite (Lax/Strict); use the __Host- prefix and a short lifetime.',
 
   'err.DECODE_FAILED': 'Decoding failed: invalid input.',
   'err.ENCODE_FAILED': 'Encoding failed.',
