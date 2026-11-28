@@ -50,7 +50,7 @@ Audit di `main` al commit `df7c0de`. L’app è funzionante e in consolidamento.
 | QA-01 | PARTIAL | P1 / alta | Funzionalità previste per v1.0 | Estendere la baseline Chromium a Firefox e WebKit. Verificare coverage, Lighthouse (prestazioni e accessibilità ≥ 90), usabilità, parità IT/EN, dipendenze, segreti e configurazione di produzione sul candidato. |
 | REL-01 | TODO | P1 / media | QA-01 | Verificare deployment e rollback, protezioni finali di main e versione nel changelog. Pubblicare il tag stabile e verificarne il commit. |
 
-La licenza effettiva è GPL-3.0. I riferimenti ad Apache-2.0 nelle sezioni storiche riportano una proposta iniziale. Il repository contiene la configurazione Vercel. L'URL pubblico resta da verificare.
+La licenza effettiva è GPL-3.0. I riferimenti ad Apache-2.0 nelle sezioni storiche riportano una proposta iniziale. La [demo pubblica su Vercel](https://webfang.vercel.app/) è stata aperta e verificata nel browser il 28 novembre 2026. Restano da verificare la corrispondenza con il commit candidato alla release e il rollback.
 
 Il dettaglio tecnico e i criteri di ciascuna fase restano nelle sezioni sottostanti.
 
