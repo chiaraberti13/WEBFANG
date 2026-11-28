@@ -2,6 +2,7 @@ import { base64DecodeOp, base64EncodeOp } from '../lib/base64.ts';
 import { urlDecodeOp, urlEncodeOp } from '../lib/url.ts';
 import { htmlDecodeOp, htmlEncodeOp } from '../lib/html-entities.ts';
 import { hexDecodeOp, hexEncodeOp } from '../lib/hex.ts';
+import { unicodeEscapeOp, unicodeUnescapeOp } from '../lib/unicode.ts';
 import { sha1Op, sha256Op, sha384Op, sha512Op } from '../lib/hash.ts';
 import { jwtInspectOp } from '../lib/jwt.ts';
 import { cookieInspectOp } from '../lib/cookie.ts';
@@ -87,6 +88,22 @@ export const OPERATIONS: readonly OperationMeta[] = [
     category: 'encode',
     i18nBase: 'hex-decode',
     op: asAnyOperation(hexDecodeOp),
+    booleanParams: [],
+    defense: { cwe: 'CWE-20', owasp: 'A03:2021' },
+  },
+  {
+    id: 'unicode-escape',
+    category: 'encode',
+    i18nBase: 'unicode-escape',
+    op: asAnyOperation(unicodeEscapeOp),
+    booleanParams: [{ name: 'all', labelKey: 'op.param.all', default: false }],
+    defense: { cwe: 'CWE-116', owasp: 'A03:2021' },
+  },
+  {
+    id: 'unicode-unescape',
+    category: 'encode',
+    i18nBase: 'unicode-unescape',
+    op: asAnyOperation(unicodeUnescapeOp),
     booleanParams: [],
     defense: { cwe: 'CWE-20', owasp: 'A03:2021' },
   },

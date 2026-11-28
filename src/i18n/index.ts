@@ -490,6 +490,30 @@ const it: Catalog = {
   'defense.csp-analyze.defense':
     "Evita unsafe-inline/unsafe-eval (usa nonce o hash), imposta default-src e object-src 'none', restringi le sorgenti ed evita i jolly.",
 
+  'op.param.all': 'Escape di tutti i caratteri (anche ASCII)',
+  'op.unicode-escape.label': 'Unicode escape',
+  'op.unicode-escape.description':
+    'Converte i caratteri in sequenze \\uXXXX (e \\u{…} per i code point astrali).',
+  'op.unicode-unescape.label': 'Unicode unescape',
+  'op.unicode-unescape.description':
+    'Risolve \\uXXXX, \\u{…} e \\xXX nei caratteri originali.',
+  'defense.unicode-escape.what':
+    'Rappresenta i caratteri come sequenze di escape Unicode; è una codifica reversibile, non cifratura.',
+  'defense.unicode-escape.where':
+    'Stringhe JavaScript, JSON, offuscamento di payload per capire come un filtro li interpreta.',
+  'defense.unicode-escape.notProve':
+    'L’escape non sanifica: il valore decodificato è identico, solo rappresentato diversamente.',
+  'defense.unicode-escape.defense':
+    'Non usare l’escape come protezione. Applica l’output encoding nel contesto giusto e valida dopo la decodifica.',
+  'defense.unicode-unescape.what':
+    'Converte le sequenze di escape Unicode nei caratteri originali.',
+  'defense.unicode-unescape.where':
+    'Deoffuscamento di payload e ispezione di stringhe codificate.',
+  'defense.unicode-unescape.notProve':
+    'Il valore decodificato resta input non attendibile.',
+  'defense.unicode-unescape.defense':
+    'Canonicalizza e valida dopo la decodifica; applica allowlist e limiti di dimensione.',
+
   // --- errori strutturati ---
   'err.DECODE_FAILED': 'Decodifica fallita: input non valido.',
   'err.ENCODE_FAILED': 'Codifica fallita.',
@@ -968,6 +992,30 @@ const en: Catalog = {
     'CSP is an additional defense: a present policy does not replace contextual output encoding.',
   'defense.csp-analyze.defense':
     "Avoid unsafe-inline/unsafe-eval (use nonces or hashes), set default-src and object-src 'none', restrict sources and avoid wildcards.",
+
+  'op.param.all': 'Escape all characters (including ASCII)',
+  'op.unicode-escape.label': 'Unicode escape',
+  'op.unicode-escape.description':
+    'Converts characters into \\uXXXX sequences (and \\u{…} for astral code points).',
+  'op.unicode-unescape.label': 'Unicode unescape',
+  'op.unicode-unescape.description':
+    'Resolves \\uXXXX, \\u{…} and \\xXX into the original characters.',
+  'defense.unicode-escape.what':
+    'Represents characters as Unicode escape sequences; a reversible encoding, not encryption.',
+  'defense.unicode-escape.where':
+    'JavaScript strings, JSON, payload obfuscation to see how a filter interprets them.',
+  'defense.unicode-escape.notProve':
+    'Escaping does not sanitize: the decoded value is identical, only represented differently.',
+  'defense.unicode-escape.defense':
+    'Never use escaping as protection. Apply contextual output encoding and validate after decoding.',
+  'defense.unicode-unescape.what':
+    'Converts Unicode escape sequences back into the original characters.',
+  'defense.unicode-unescape.where':
+    'De-obfuscating payloads and inspecting encoded strings.',
+  'defense.unicode-unescape.notProve':
+    'The decoded value is still untrusted input.',
+  'defense.unicode-unescape.defense':
+    'Canonicalize and validate after decoding; apply allowlists and size limits.',
 
   'err.DECODE_FAILED': 'Decoding failed: invalid input.',
   'err.ENCODE_FAILED': 'Encoding failed.',
