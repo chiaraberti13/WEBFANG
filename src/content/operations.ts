@@ -5,6 +5,7 @@ import { hexDecodeOp, hexEncodeOp } from '../lib/hex.ts';
 import { sha1Op, sha256Op, sha384Op, sha512Op } from '../lib/hash.ts';
 import { jwtInspectOp } from '../lib/jwt.ts';
 import { cookieInspectOp } from '../lib/cookie.ts';
+import { cspAnalyzeOp } from '../lib/csp.ts';
 import { asAnyOperation, type OperationMeta } from './types.ts';
 
 const urlSafeParam = {
@@ -136,6 +137,14 @@ export const OPERATIONS: readonly OperationMeta[] = [
     op: asAnyOperation(cookieInspectOp),
     booleanParams: [],
     defense: { cwe: 'CWE-1004', owasp: 'A05:2021' },
+  },
+  {
+    id: 'csp-analyze',
+    category: 'analyze',
+    i18nBase: 'csp-analyze',
+    op: asAnyOperation(cspAnalyzeOp),
+    booleanParams: [],
+    defense: { cwe: 'CWE-693', owasp: 'A05:2021' },
   },
 ];
 

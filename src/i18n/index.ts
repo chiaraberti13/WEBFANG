@@ -478,6 +478,18 @@ const it: Catalog = {
   'defense.cookie-inspect.defense':
     'Per i cookie sensibili imposta HttpOnly, Secure e SameSite (Lax/Strict); usa il prefisso __Host- e una scadenza breve.',
 
+  'op.csp-analyze.label': 'CSP — analizza',
+  'op.csp-analyze.description':
+    'Analizza una Content-Security-Policy ed evidenzia le debolezze comuni.',
+  'defense.csp-analyze.what':
+    'Elenca le direttive e segnala unsafe-inline/unsafe-eval, sorgenti jolly e l’assenza di default-src/object-src.',
+  'defense.csp-analyze.where':
+    'Revisione degli header di risposta: hardening contro XSS e injection.',
+  'defense.csp-analyze.notProve':
+    'La CSP è una difesa aggiuntiva: una policy presente non sostituisce l’output encoding contestuale.',
+  'defense.csp-analyze.defense':
+    "Evita unsafe-inline/unsafe-eval (usa nonce o hash), imposta default-src e object-src 'none', restringi le sorgenti ed evita i jolly.",
+
   // --- errori strutturati ---
   'err.DECODE_FAILED': 'Decodifica fallita: input non valido.',
   'err.ENCODE_FAILED': 'Codifica fallita.',
@@ -944,6 +956,18 @@ const en: Catalog = {
     'The analysis is syntactic: a present flag does not guarantee a secure configuration in context.',
   'defense.cookie-inspect.defense':
     'For sensitive cookies set HttpOnly, Secure and SameSite (Lax/Strict); use the __Host- prefix and a short lifetime.',
+
+  'op.csp-analyze.label': 'CSP — analyze',
+  'op.csp-analyze.description':
+    'Parses a Content-Security-Policy and flags common weaknesses.',
+  'defense.csp-analyze.what':
+    'Lists the directives and flags unsafe-inline/unsafe-eval, wildcard sources and missing default-src/object-src.',
+  'defense.csp-analyze.where':
+    'Reviewing response headers: hardening against XSS and injection.',
+  'defense.csp-analyze.notProve':
+    'CSP is an additional defense: a present policy does not replace contextual output encoding.',
+  'defense.csp-analyze.defense':
+    "Avoid unsafe-inline/unsafe-eval (use nonces or hashes), set default-src and object-src 'none', restrict sources and avoid wildcards.",
 
   'err.DECODE_FAILED': 'Decoding failed: invalid input.',
   'err.ENCODE_FAILED': 'Encoding failed.',
