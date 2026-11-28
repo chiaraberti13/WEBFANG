@@ -31,6 +31,7 @@ test('makes no unexpected network requests while in use', async ({ page }) => {
   await page.getByRole('button', { name: 'URL / href' }).click();
   await page.getByRole('tab', { name: 'Payload' }).click();
   await page.getByRole('tab', { name: 'Playground' }).click();
+  await page.getByRole('tab', { name: 'Regex' }).click();
   await page.getByRole('tab', { name: 'Trasforma' }).click();
   await page.waitForTimeout(500);
 

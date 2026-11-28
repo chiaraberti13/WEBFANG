@@ -193,6 +193,35 @@ const it: Catalog = {
     'Un esito “neutralizzato” qui non è una garanzia universale: dipende dalla configurazione e dal contesto di rendering.',
   'guide.playground': 'Prova una difesa su un payload e osserva cosa resta.',
 
+  // --- Regex tester ---
+  'tab.regex': 'Regex',
+  'regex.intro':
+    'Testa un’espressione regolare in un worker isolato: un pattern catastrofico non blocca l’interfaccia.',
+  'regex.pattern': 'Pattern',
+  'regex.flags': 'Flag',
+  'regex.flag.g': 'g (globale)',
+  'regex.flag.i': 'i (maiuscole/minuscole)',
+  'regex.flag.m': 'm (multilinea)',
+  'regex.flag.s': 's (dotall)',
+  'regex.testString': 'Stringa di test',
+  'regex.results': 'Risultati',
+  'regex.matches': '{n} match',
+  'regex.noMatch': 'Nessun match.',
+  'regex.timeout':
+    'Timeout: pattern troppo costoso (possibile ReDoS). Il worker è stato terminato per proteggere l’interfaccia.',
+  'regex.invalid': 'Pattern non valido',
+  'regex.tooLarge': 'Input oltre il limite di {max} caratteri.',
+  'defense.regex.what':
+    'Confronta un pattern con un testo e restituisce i match e i gruppi catturati.',
+  'defense.regex.where':
+    'Validazione input, parsing, routing, filtri — ovunque si usino regex su dati non fidati.',
+  'defense.regex.notProve':
+    'Un match non valida la sicurezza: pattern con backtracking annidato possono esplodere (ReDoS) su input costruiti.',
+  'defense.regex.defense':
+    'Evita quantificatori annidati/ambigui; usa àncore e classi specifiche; imponi limiti di lunghezza e timeout; valuta engine lineari (RE2) lato server.',
+  'guide.regex':
+    'Scrivi un pattern e una stringa: i match compaiono sotto, al sicuro in un worker.',
+
   'pack.sqli.label': 'SQL injection',
   'pack.sqli.description': 'Input che altera una query SQL.',
   'defense.pack.sqli.what':
@@ -626,6 +655,34 @@ const en: Catalog = {
   'playground.note':
     'A “neutralized” result here is not a universal guarantee: it depends on configuration and rendering context.',
   'guide.playground': 'Try a defense on a payload and watch what remains.',
+
+  'tab.regex': 'Regex',
+  'regex.intro':
+    'Test a regular expression in an isolated worker: a catastrophic pattern does not freeze the UI.',
+  'regex.pattern': 'Pattern',
+  'regex.flags': 'Flags',
+  'regex.flag.g': 'g (global)',
+  'regex.flag.i': 'i (ignore case)',
+  'regex.flag.m': 'm (multiline)',
+  'regex.flag.s': 's (dotall)',
+  'regex.testString': 'Test string',
+  'regex.results': 'Results',
+  'regex.matches': '{n} matches',
+  'regex.noMatch': 'No match.',
+  'regex.timeout':
+    'Timeout: pattern too expensive (possible ReDoS). The worker was terminated to protect the UI.',
+  'regex.invalid': 'Invalid pattern',
+  'regex.tooLarge': 'Input exceeds the limit of {max} characters.',
+  'defense.regex.what':
+    'Matches a pattern against text and returns matches and captured groups.',
+  'defense.regex.where':
+    'Input validation, parsing, routing, filters — anywhere regex runs on untrusted data.',
+  'defense.regex.notProve':
+    'A match does not validate security: patterns with nested backtracking can blow up (ReDoS) on crafted input.',
+  'defense.regex.defense':
+    'Avoid nested/ambiguous quantifiers; use anchors and specific classes; enforce length limits and timeouts; consider linear engines (RE2) server-side.',
+  'guide.regex':
+    'Write a pattern and a string: matches appear below, safely inside a worker.',
 
   'pack.sqli.label': 'SQL injection',
   'pack.sqli.description': 'Input that alters a SQL query.',

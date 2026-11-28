@@ -1,7 +1,14 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
-const TABS = ['Trasforma', 'Componi', 'Contesto XSS', 'Payload', 'Playground'];
+const TABS = [
+  'Trasforma',
+  'Componi',
+  'Contesto XSS',
+  'Payload',
+  'Playground',
+  'Regex',
+];
 
 test.beforeEach(async ({ page }) => {
   await page.goto('/');

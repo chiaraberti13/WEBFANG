@@ -8,10 +8,12 @@ import { RecipeBoard } from './components/RecipeBoard.tsx';
 import { XssExplorer } from './components/XssExplorer.tsx';
 import { PayloadExplorer } from './components/PayloadExplorer.tsx';
 import { DefensePlayground } from './components/DefensePlayground.tsx';
+import { RegexTester } from './components/RegexTester.tsx';
 import { Wizard } from './components/Wizard.tsx';
 import { Onboarding } from './components/Onboarding.tsx';
 
-type Tab = 'transform' | 'compose' | 'context' | 'payloads' | 'playground';
+type Tab =
+  'transform' | 'compose' | 'context' | 'payloads' | 'playground' | 'regex';
 
 const FIRST_CONTEXT_ID = XSS_CONTEXTS[0]?.id ?? '';
 const FIRST_PACK_ID = PAYLOAD_PACKS[0]?.id ?? '';
@@ -119,7 +121,14 @@ export default function App() {
 
       <nav className="wf-tabs" role="tablist" aria-label="WebFang">
         {(
-          ['transform', 'compose', 'context', 'payloads', 'playground'] as const
+          [
+            'transform',
+            'compose',
+            'context',
+            'payloads',
+            'playground',
+            'regex',
+          ] as const
         ).map((id) => (
           <button
             key={id}
@@ -161,6 +170,7 @@ export default function App() {
           />
         )}
         {tab === 'playground' && <DefensePlayground lang={lang} />}
+        {tab === 'regex' && <RegexTester lang={lang} />}
       </main>
 
       <footer className="wf-footer">

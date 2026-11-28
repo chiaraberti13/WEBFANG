@@ -25,3 +25,12 @@ test('the wizard routes to the chosen XSS context', async ({ page }) => {
     page.getByText('<svg onload=alert(document.domain)>'),
   ).toBeVisible();
 });
+
+test('the regex tester runs in a worker and shows matches', async ({
+  page,
+}) => {
+  await page.getByRole('tab', { name: 'Regex' }).click();
+  // default pattern matches the two emails in the default test string
+  await expect(page.getByText('test@example.com')).toBeVisible();
+  await expect(page.getByText(/2 match/)).toBeVisible();
+});
